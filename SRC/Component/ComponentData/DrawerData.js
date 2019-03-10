@@ -27,7 +27,7 @@ export const datadrawer =[
 },
 {
     image:require('../../assets/Photo/pink.png.png'),
-    title:'Film',
+    title:'Film To Watch',
     id:5
 
 },
