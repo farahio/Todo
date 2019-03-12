@@ -12,10 +12,12 @@ import {
 import { datadrawer } from "./ComponentData/DrawerData";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {setType} from '../Services/action'
+import{connect} from 'react-redux'
 let dim = Dimensions.get("window");
-export default class DrawerComponent extends Component {
+ class DrawerComponent extends Component {
   render() {
-      
+    
     return (
       <View style={styles.countainer}>
         <View style={styles.headerdrawer}>
@@ -28,7 +30,13 @@ export default class DrawerComponent extends Component {
             renderItem={({ item }) => (
               <TouchableOpacity
               
-              onPress={() => this.props.navigation.navigate('Eat',{ name :`${item.title}`})}
+              onPress={() => {
+                
+                this.props.setType(item.title );
+                this.props.navigation.navigate('Eat',{ name :item.title,color:item.Color})
+                this.props.navigation.closeDrawer()
+              }}
+                
                 style={styles.option}
               >
               <View style={styles.option}>
@@ -123,8 +131,8 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   image: {
-    width: 20,
-    height: 20,
+    width: 30,
+    height: 30,
     marginLeft: 20
   },
   text: {
@@ -159,3 +167,4 @@ const styles = StyleSheet.create({
       marginLeft:25
   }
 });
+export default connect( null ,{ setType})(DrawerComponent)

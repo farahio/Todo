@@ -2,37 +2,39 @@
 export const datadrawer =[
 
 {
-    image:require('../../assets/Photo/propule.png.png'),
+    image:require('../../assets/Photo/shoping.png.png'),
     title:'Shoping',
-    id:1
+    id:1,
+   
 
 },
 {
-    image:require('../../assets/Photo/red.png.png'),
+    image:require('../../assets/Photo/work.png.png'),
     title:'Work',
-    id:2
+    id:2,
+    
 
 },
 {
-    image:require('../../assets/Photo/blue2.png.png'),
+    image:require('../../assets/Photo/visit.png.png'),
     title:'Visit',
     id:3
 
 },
 {
-    image:require('../../assets/Photo/green.png.png'),
+    image:require('../../assets/Photo/eat.png.png'),
     title:'Eat',
     id:4
 
 },
 {
-    image:require('../../assets/Photo/pink.png.png'),
+    image:require('../../assets/Photo/film.png.png'),
     title:'Film To Watch',
     id:5
 
 },
 {
-    image:require('../../assets/Photo/blue.png.png'),
+    image:require('../../assets/Photo/learning.png.png'),
     title:'Learning',
     id:6
 

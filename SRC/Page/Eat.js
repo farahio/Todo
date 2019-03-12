@@ -1,34 +1,60 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,Dimensions,Image,TouchableOpacity,TouchableHighlight} from 'react-native';
+import {Platform, StyleSheet, Text, View,TextInput,Dimensions,FlatList,Image,TouchableOpacity,TouchableHighlight} from 'react-native';
 import { createStackNavigator, createAppContainer ,createDrawerNavigator} from "react-navigation";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DrawerComponent from '../Component/DrawerComponent'
+import{connect} from 'react-redux'
+import{fetchProducts, setItem} from '../Services/action'
+import Visiting from './Visiting'
 
 
 let dim=Dimensions.get('window')
 
 
  class Eat extends Component {
-   
- 
-  
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      text : '',
+      
+    }
+    
+  }
+
+
+
+  setText(input ){
+    this.setState({
+        
+        text: input
+    })
+}
+
+
+
+
 
 
   render() {
 
     const { navigation } = this.props;
     const name = navigation.getParam('name');
+    const backgroundColor = navigation.getParam('backgroundColor');
+   
     return (
     
       <View style = {styles.container}>
-      <View style = {[styles.headerStyle , {justifyContent : 'space-between'}]}>
+      <View style = {[styles.headerStyle , {justifyContent : 'space-between',backgroundColor:backgroundColor}]}>
         <View style = {styles.headerStyle}>
             <TouchableOpacity 
-            onPress={() =>navigation.toggleDrawer()}>
+            onPress={() =>this.props.navigation.openDrawer()}>
                 <Icon name="align-justify" size={22} color='white' style={{marginLeft:15}} />
             </TouchableOpacity>
-            <Text style={{color:'white',marginLeft:20,fontSize:22}}>{name}</Text>
+            <Text style={styles.textoption}>{name}</Text>
         </View>
+        
+                 
 
         <View style = {[styles.headerStyle , {justifyContent : 'flex-end'}]}>
             <TouchableOpacity>
@@ -38,11 +64,24 @@ let dim=Dimensions.get('window')
            
 
         </View>
-
+        
       </View>
+        
       <View style = {styles.bodyStyle}>
-          <View style={styles.Listener}></View>
-          <View style={styles.Changer}></View>
+          <View style={styles.Listener}>
+              <Visiting/>
+          </View>
+          <View style={styles.Changer}>
+          <TextInput 
+                placeholder = {'Type here...'}
+                style={styles.inputStyle}
+                onChangeText = {this.setText.bind(this)}
+                />
+                <TouchableOpacity style ={styles.bottonStyle}>
+                    <Text style = {styles.fontStyle}>Done</Text>
+                
+                </TouchableOpacity>
+          </View>
       </View>
     
   </View>
@@ -51,14 +90,7 @@ let dim=Dimensions.get('window')
 }
 
 const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor:'#3EBB4B'
-    
-//   },
-// iconstyle:{
-//   marginLeft:20
-// }
+
 
 container: {
   flex: 1,
@@ -74,7 +106,7 @@ threeStyle : {
 },
 headerStyle :{
     flexDirection: 'row', 
-    backgroundColor: '#000066',
+  
     flex : 1,
     alignItems: 'center',
 },
@@ -95,29 +127,88 @@ drawerBottonRight :{
 },
 Listener:{
   flex:8,
-  backgroundColor:'#A8F4C2'
+  backgroundColor:'#e7e7e7'
+
 },
 Changer:{
-  flex:1,
-  backgroundColor:'green'
-}
+  flexDirection:'row',
+  backgroundColor:'#e7e7e7'
+},
+textoption:{
+  color:'white',
+marginLeft:20,
+fontSize:22
+},
+inputStyle:{
+  flex : 8 ,
+  height:40,
+  backgroundColor: '#f2f3f7',
+  borderWidth: 2,
+  borderColor : '#E1E2E7',
+  borderBottomColor:'#F10C39',
+  marginBottom:30,
+   margin:10,
+   elevation : 15
+},
+bottonStyle:{
+  flex : 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  elevation : 15,
+  marginBottom:40,
+  marginRight: 10,
+},
+
+fontStyle : {
+  color : '#F10C39',  
+  fontWeight : "200" , 
+  fontSize : 14 ,
+},
+fontStyle2 : {
+  color : '#98042D',  
+  fontWeight : "200" , 
+  fontSize : 20 ,
+},
+flatStyle :{
+  marginTop : 25 ,
+},
+itemStyle :{
+  width : 400,
+  flexDirection: 'row',
+  flex :1,
  
+  borderBottomColor:'#98042D',
+  marginStart : 15,
+  justifyContent: 'flex-start',
+  marginTop : 10,
+},
+
 });
 
-const rootstack = createDrawerNavigator(
+const mapStateToProps=(state)=>{
+  return{
+   
+    items : state.item
+  }
+  
+  }
+ 
+let connectedEat = connect(mapStateToProps,{fetchProducts,setItem})(Eat);
+
+export const rootstack = createDrawerNavigator(
   {
       
       Eat: {
-        screen:Eat, 
+        screen:connectedEat, 
       },
       Work: {
-        screen: Eat,
+        screen: connectedEat,
       },
       Visite: {
-        screen: Eat,
+        screen: connectedEat,
       },
       Learning: {
-        screen:Eat,
+        screen:connectedEat,
       },
       
       
@@ -144,7 +235,10 @@ const rootstack = createDrawerNavigator(
       initialRouteName: "Eat"
     }
   );
-
-  export default rootstack;
-
+ 
+  
+    
+    
+    
+    export default rootstack;
 

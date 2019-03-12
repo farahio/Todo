@@ -14,34 +14,22 @@ import {
 import { createSwitchNavigator, createAppContainer,createStackNavigator,createDrawerNavigator} from "react-navigation";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Eat from './Eat'
-
+import {connect} from 'react-redux'
 
 let dim=Dimensions.get('window')
 
 
  class Home extends Component {
-   
-  // static navigationOptions = ({ navigation }) => {
- 
- 
-  //   return {
-  //     headerTitle:'Choose Option',
-  //     headerTitleStyle:{marginLeft:30,color:'white'},
-  //     headerStyle:{backgroundColor:'#65C5C8'},
-  //     headerLeft: (
-  //       <TouchableHighlight onPress={()=>navigation.openDrawer()}
-  //        style={styles.drawerhome}>
-  //        <Icon name="align-justify" size={22} color='white' />
-  //        </TouchableHighlight>
-  //     ),
-      
-  //   };
-  
+
       render() {
         return (
             
             <View style={styles.countainer}>
             <View style={styles.headerStyle}>
+                <Image 
+                  source={require('../assets/Photo/logo8.png')}
+                  style={styles.logotitle}
+                />
                 <Text style={styles.headerText}>Choose Option</Text>
             </View>
 
@@ -50,32 +38,32 @@ let dim=Dimensions.get('window')
             <View style={styles.body}>
             <View style={styles.options}>
             <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('Eat',{ name :'work'})}
+                onPress={() => this.props.navigation.navigate('Eat',{ name :'work', backgroundColor:'#EC400D'})}
                 style={[styles.Viewoption,{backgroundColor:'#EC400D'}]}>
                 <Text style={styles.textoption}>Work</Text>
             </TouchableOpacity>
             <TouchableOpacity
-                 onPress={() => this.props.navigation.navigate('Eat',{ name :'Film To Watch'})}
+                 onPress={() => this.props.navigation.navigate('Eat',{ name :'Film To Watch', backgroundColor:'#D573ED'})}
                 style={[styles.Viewoption,{backgroundColor:'#D573ED'}]}>
                 <Text style={styles.textoption}>Film To Watch</Text>
             </TouchableOpacity>
             <TouchableOpacity
-                 onPress={() => this.props.navigation.navigate('Eat',{ name :'Learning'})}
+                 onPress={() => this.props.navigation.navigate('Eat',{ name :'Learning',backgroundColor:'#3C52F6'})}
                 style={[styles.Viewoption,{backgroundColor:'#3C52F6'}]}>
                 <Text style={styles.textoption}>Learning</Text>
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('Eat',{ name :'Shoping'})}
+                onPress={() => this.props.navigation.navigate('Eat',{ name :'Shoping' , backgroundColor:'#C9D751'})}
                 style={[styles.Viewoption,{backgroundColor:'#C9D751'}]}>
                 <Text style={styles.textoption}>Shoping</Text>
             </TouchableOpacity>
             <TouchableOpacity
-                 onPress={() => this.props.navigation.navigate('Eat',{ name :'Visit'})}
+                 onPress={() => this.props.navigation.navigate('Eat',{ name :'Visit' , backgroundColor:'#e45'})}
                 style={[styles.Viewoption,{backgroundColor:'#e45'}]}>
                 <Text style={styles.textoption}>Visit</Text>
             </TouchableOpacity>
             <TouchableOpacity
-                 onPress={() => this.props.navigation.navigate('Eat',{ name :'Eat'})}
+                 onPress={() => this.props.navigation.navigate('Eat',{ name :'Eat' , backgroundColor:'#3BE152'})}
                 style={[styles.Viewoption,{backgroundColor:'#3BE152'}]}>
                 <Text style={styles.textoption}>Eat</Text>
             </TouchableOpacity>
@@ -96,18 +84,20 @@ let dim=Dimensions.get('window')
     
         },
         headerStyle :{
-          justifyContent: 'center',
+          
             flex:1,
-            backgroundColor:'#23A7A7'
+            backgroundColor:'#23A7A7',
+            flexDirection: 'row',
       },
       body : {
           flex : 9
       },
       headerText : {
-        marginLeft : 20,
+        marginLeft : 10,
         fontWeight: 'bold',
         color : 'white',
         fontSize : 20,
+        marginTop:20
       },
      Viewoption:{
        width:350,
@@ -117,6 +107,7 @@ let dim=Dimensions.get('window')
        borderRadius: 7,
        justifyContent:'center',
        alignItems: 'center',
+       elevation : 15,
 
      },
      textoption:{
@@ -125,6 +116,12 @@ let dim=Dimensions.get('window')
      },
      options:{
        marginTop:20,
+       marginLeft:10
+     },
+     logotitle:{
+       width:50,
+       height:50,
+       marginTop:10,
        marginLeft:10
      }
     })
@@ -143,4 +140,4 @@ let dim=Dimensions.get('window')
         
           
         
-        export default createAppContainer(AppNavigator);
+    export default createAppContainer(AppNavigator)

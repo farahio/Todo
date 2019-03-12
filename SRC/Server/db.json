@@ -1,0 +1,36 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "option": "work",
+      "type": "hello"
+    },
+    {
+      "id": 2,
+      "option": "Eat",
+      "type": "good"
+    },
+    {
+      "id": 3,
+      "option": "Shoping",
+      "type": "nice"
+    },
+    {
+      "id": 4,
+      "option": "Learning",
+      "type": "well"
+    },
+    {
+      "id": 5,
+      "option": "Visit",
+      "type": "god"
+    },
+    {
+      "id": 6,
+      "option": "Film To Watch",
+      "type": "dog"
+    }
+  
+ 
+  ]
+}
