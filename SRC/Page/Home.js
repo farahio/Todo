@@ -12,9 +12,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { createSwitchNavigator, createAppContainer,createStackNavigator,createDrawerNavigator} from "react-navigation";
-import Icon from 'react-native-vector-icons/FontAwesome';
 import Eat from './Eat'
 import {connect} from 'react-redux'
+import {setType} from '../Services/action'
+
 
 let dim=Dimensions.get('window')
 
@@ -22,6 +23,8 @@ let dim=Dimensions.get('window')
  class Home extends Component {
 
       render() {
+        // const { navigation } = this.props;
+        // const name = navigation.getParam('name');
         return (
             
             <View style={styles.countainer}>
@@ -37,8 +40,11 @@ let dim=Dimensions.get('window')
             
             <View style={styles.body}>
             <View style={styles.options}>
-            <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('Eat',{ name :'work', backgroundColor:'#EC400D'})}
+            <TouchableOpacity 
+            
+                onPress={() =>{ 
+                  // this.props.setType(this.props.name);
+                  this.props.navigation.navigate('Eat',{ name :'work', backgroundColor:'#EC400D'})}}
                 style={[styles.Viewoption,{backgroundColor:'#EC400D'}]}>
                 <Text style={styles.textoption}>Work</Text>
             </TouchableOpacity>
@@ -74,6 +80,7 @@ let dim=Dimensions.get('window')
         )
     }
     }
+   
   
     const styles=StyleSheet.create({
         countainer:{
@@ -140,4 +147,20 @@ let dim=Dimensions.get('window')
         
           
         
-    export default createAppContainer(AppNavigator)
+        const AppContainer = createAppContainer(AppNavigator);
+        class App extends Component {
+        
+           render() {
+             return <AppContainer />;
+           }
+         }
+
+         const mapStateToProps=(state)=>{
+          return{
+           
+            items : state.item
+          }
+          
+          }
+         
+        export default connect(mapStateToProps,{setType})(App);

@@ -17,22 +17,19 @@ let dim=Dimensions.get('window')
     super(props)
     this.state = {
       text : '',
+      select:false
       
     }
     
   }
 
 
-
   setText(input ){
-    this.setState({
         
-        text: input
-    })
+    if( input.length > 0 ){
+        this.setState ({text : input})
+  }
 }
-
-
-
 
 
 
@@ -45,7 +42,9 @@ let dim=Dimensions.get('window')
     return (
     
       <View style = {styles.container}>
-      <View style = {[styles.headerStyle , {justifyContent : 'space-between',backgroundColor:backgroundColor}]}>
+   
+
+   <View style = {[styles.headerStyle , {justifyContent : 'space-between',backgroundColor:backgroundColor}]}>
         <View style = {styles.headerStyle}>
             <TouchableOpacity 
             onPress={() =>this.props.navigation.openDrawer()}>
@@ -57,7 +56,8 @@ let dim=Dimensions.get('window')
                  
 
         <View style = {[styles.headerStyle , {justifyContent : 'flex-end'}]}>
-            <TouchableOpacity>
+
+            <TouchableOpacity  onPress = {this.Changer.bind(this)}>
                 <Icon name="search" size={22} color='white' style={{marginRight:15}}/>
             </TouchableOpacity>
 
@@ -65,8 +65,12 @@ let dim=Dimensions.get('window')
 
         </View>
         
-      </View>
+      </View> 
+    
+
+  
         
+       
       <View style = {styles.bodyStyle}>
           <View style={styles.Listener}>
               <Visiting/>
@@ -74,10 +78,20 @@ let dim=Dimensions.get('window')
           <View style={styles.Changer}>
           <TextInput 
                 placeholder = {'Type here...'}
+               value={this.state.text}
+                // placeholderStyle={{ fontSize:22, borderColor: 'red' }}
                 style={styles.inputStyle}
                 onChangeText = {this.setText.bind(this)}
                 />
-                <TouchableOpacity style ={styles.bottonStyle}>
+                <TouchableOpacity  onPress= {()=>
+                    {if( this.state.text.length > 0 ){
+                    this.props.setItem(this.state.text, name)
+                    this.setState({text:''})
+                   
+                            }
+                            }
+                        }
+                style ={styles.bottonStyle}>
                     <Text style = {styles.fontStyle}>Done</Text>
                 
                 </TouchableOpacity>
@@ -131,6 +145,7 @@ Listener:{
 
 },
 Changer:{
+ 
   flexDirection:'row',
   backgroundColor:'#e7e7e7'
 },
@@ -141,7 +156,7 @@ fontSize:22
 },
 inputStyle:{
   flex : 8 ,
-  height:40,
+  height:60,
   backgroundColor: '#f2f3f7',
   borderWidth: 2,
   borderColor : '#E1E2E7',
@@ -155,7 +170,7 @@ bottonStyle:{
   justifyContent: 'center',
   alignItems: 'center',
   elevation : 15,
-  marginBottom:40,
+  marginBottom:20,
   marginRight: 10,
 },
 

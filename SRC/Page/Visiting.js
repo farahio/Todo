@@ -23,13 +23,14 @@ class Visiting extends Component {
    
     
     render() {
+
         return (
             <View style={styles.container}>
           
                            
                             <FlatList
                             data={this.props.selectedItem}
-                            keyExtractor={item => item.id}
+                            keyExtractor={item => item.id.toString()}
                             renderItem={({item,})=>
         
                             <View style={styles.boxGreen}>
@@ -38,7 +39,8 @@ class Visiting extends Component {
                                     <Text style={styles.text}>{item.type}</Text>
                                     
                                 </View>
-                                <TouchableOpacity  style={styles.delete}>
+                                <TouchableOpacity onPress={() => this.props.setRemoveItem(item.id)}
+                                style={styles.delete}>
                                         <Text>Delete</Text>
                                     </TouchableOpacity>
                             </View>
@@ -100,7 +102,7 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         fontSize:22,
         paddingVertical:5,
-        alignSelf:'flex-end',
+        
     },
 
     boxGreen:{
@@ -119,8 +121,8 @@ const styles = StyleSheet.create({
     },
     boxtext:{
         width:200,
-        flexDirection:'row',
-        justifyContent:'space-around'
+        
+      
     },
     delete:{
         width:50,

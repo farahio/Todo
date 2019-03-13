@@ -1,4 +1,4 @@
-import {FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_FAILURE,FETCH_TYPE,FETCH_ITEM,REMOVE_ITEM} from './type';
+import {FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_FAILURE,FETCH_TYPE,FETCH_ITEM,REMOVE_ITEM,SEARCH_ITEM} from './type';
 
 
 
@@ -21,10 +21,10 @@ import {FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_FAILURE,FETCH
     };
   };
 
-  const setRemoveItemAction = (index)  => {
+  const setRemoveItemAction = (id)  => {
     return{
         type : REMOVE_ITEM,
-        payload : index
+        payload : id
     }
 }
   
@@ -33,7 +33,14 @@ import {FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_FAILURE,FETCH
     payload: error
   });
 
-  
+  const setSearchAction = (text) => {
+    return{
+        
+        type : SEARCH_ITEM,
+        payload : text
+    }
+}
+
   const setTypeAction = typeState=> {
   
     return {
@@ -41,41 +48,63 @@ import {FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_FAILURE,FETCH
         payload : typeState
     }
   }
-//   export const setItem = (text , type ) => {
-//     var date = Date.now();
-//     return dispatch => {
-//         let data = {
-//             "option": text,
-//             "type": type,
+  export const setSearchItem = text => {
+
+    return setSearchAction (text);
+  };
+  
+  export const setItem = (text , type ) => {
+    var date = Date.now();
+    return dispatch => {
+        let data = {
+            "option": type,
+            "type": text,
+            "date":date
             
-//         };
-//         fetch(`http://10.0.2.2:3000/tasks`,
-//             {
-//                 method: 'POST',
-//                 headers: {
-//                     Accept: 'application/json',
-//                     'Content-Type': 'application/json',
-//                 },
-//                 body: JSON.stringify(data)
-//             }
-//         )
-//             .then(response => response.json())
-//             .then(getData => {
-//                 dispatch(setItemAction(getData))
-//             })
-//             .catch(error => error)
-//     }
-//   };
+        };
+        fetch(`http://10.0.2.2:3000/tasks`,
+            {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            }
+        )
+            .then(response => response.json())
+            .then(getData => {
+                dispatch(setItemAction(getData))
+            })
+            .catch(error => error)
+    }
+  };
 
 
-  export const  setItem = () => {
-    return setItemAction({"type": "txt", "object": "Work"});
-} ;
+
+  export const setRemoveItem = (id ) => {
+    return dispatch => {
+        const url = "http://10.0.2.2:3000/tasks/";
+           fetch(`${url}${id}` ,{
+               method: 'DELETE'
+           }
+        )
+            .then(response => response.json())
+            .then(data => {
+                dispatch(setRemoveItemAction(id));
+            })
+    }
+  };
+  
+
+  
+  
 
 
-  export const  setRemoveItem = index => {
-    return setRemoveItemAction(index);
-} ;
+//   export const  setItem = (text) => {
+//     return setItemAction(text);
+// } ;
+
 
 export const setType = type =>{
     return setTypeAction (type)

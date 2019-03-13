@@ -4,7 +4,6 @@ import {REMOVE_ITEM,FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_F
     id: 0,
     items: [],
     selectedItem : [],
-    
   };
   
   function reducer(state = initialState, action) {
@@ -32,24 +31,29 @@ import {REMOVE_ITEM,FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_F
           items: [],
           selectedItem: []
         };
+
         case REMOVE_ITEM:
+        const index = state.items.findIndex(({ id }) => id == action.payload );
+        const indexSelected = state.selectedItem.findIndex(({ id }) => id == action.payload );
         return {
             ...state,
             items : [
-                ...state.items.slice(0,action.payload),
-                ...state.items.slice(action.payload + 1 )
+                ...state.items.slice(0,index),
+                ...state.items.slice(index + 1 )
             ],
             selectedItem : [
-                ...state.items.slice(0,action.payload),
-                ...state.items.slice(action.payload + 1 )
+                ...state.selectedItem.slice(0,indexSelected),
+                ...state.selectedItem.slice(indexSelected + 1 )
             ]
         };
+
         case FETCH_ITEM:
             return {
                 ...state,
                 items : [...state.items , action.payload],
                 selectedItem : [...state.selectedItem , action.payload]
             };
+            
             case FETCH_TYPE:
             let filteredData=[]
       
