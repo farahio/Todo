@@ -1,13 +1,45 @@
 import React,{Component} from 'react';
-import { Button, View,ActivityIndicator,Image,Dimensions,StyleSheet} from 'react-native';
+import { Button, View,ActivityIndicator,Image,Dimensions,Animated,StyleSheet,Easing} from 'react-native';
 import { createSwitchNavigator,createAppContainer} from 'react-navigation';
 import Home from './Home';
 let dim = Dimensions.get('window')
 class Loading extends Component {
-  componentDidMount() {
-setTimeout(()=>this.props.navigation.navigate('Home'),1000);
-  }
+  constructor(props) {
+    super(props);
+    this.state = {
+        rotation: new Animated.Value(100)
+    }
+}
+componentDidMount() {
+  this.navigate();
+  this.animationloading();
+}
+
+navigate=()=>{
+  setTimeout(()=>this.props.navigation.navigate('Home'),1000)
+};
+animationloading = () => {
+  Animated.timing(
+      this.state.rotation,
+      {
+          toValue: 0,
+          duration: 1000,
+          easing: Easing.back(),
+          useNativeDriver: true
+      }
+  ).start(() => this.animationloading())}
+
+
+
+
+//   componentDidMount() {
+// setTimeout(()=>this.props.navigation.navigate('Home'),1000);
+//   }
   render() {
+    const Transform = this.state.rotation.interpolate({
+      inputRange: [0, 5, 10],
+      outputRange: ['0deg', '180deg', '0deg']
+  });
     return (
       <View
         style={{
@@ -16,12 +48,19 @@ setTimeout(()=>this.props.navigation.navigate('Home'),1000);
           alignItems: 'center',
         }}>
         <Image
-          source={require('../assets/Photo/colores.jpg')}
+          source={require('../assets/Photo/back.png')}
           style={styles.image}
         />
-        <Image source={require('../assets/Photo/logo8.png')}
-          style={styles.logo}
-        />
+        <View style={{justifyContent:'center',alignItems:'center'}}>
+        <Animated.View style={{transform:[{rotate:Transform}]}}>
+
+          <Image
+            source={require('../assets/Photo/loading.png')}
+            style={styles.loading}
+          />
+         </Animated.View>
+        </View>
+       
         <View>
           <ActivityIndicator size={'large'}/>
         </View>
@@ -41,8 +80,12 @@ const styles = StyleSheet.create({
     position:'absolute'
   },
   logo:{
-    width:250,
-    height:250
+    width:180,
+    height:180
+  },
+  loading:{
+    marginLeft:50,
+
   }
 })
 

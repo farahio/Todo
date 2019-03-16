@@ -49,17 +49,18 @@ import {FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_FAILURE,FETCH
     }
   }
   export const setSearchItem = text => {
-
+  
     return setSearchAction (text);
   };
   
   export const setItem = (text , type ) => {
-    var date = Date.now();
+    var now = new Date();
     return dispatch => {
         let data = {
             "option": type,
             "type": text,
-            "date":date
+            "date":now.toLocaleDateString(),
+            "time":now.toLocaleTimeString()
             
         };
         fetch(`http://10.0.2.2:3000/tasks`,

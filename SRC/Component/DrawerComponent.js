@@ -23,6 +23,18 @@ let dim = Dimensions.get("window");
         <View style={styles.headerdrawer}>
           <Text style={styles.list}>List</Text>
         </View>
+        <TouchableOpacity
+          
+          onPress={() =>
+            this.props.navigation.navigate('Home')
+          }
+          style={styles.setting}
+        >
+        <View style={styles.favoriteview}>
+        <Icon name='home' size={30} color='green' style={styles.icon}/>
+          <Text style={styles.textfavorite}>Home</Text>
+          </View>
+        </TouchableOpacity>
         <View style={styles.draweroption}>
           <FlatList
             data={datadrawer}
@@ -50,8 +62,11 @@ let dim = Dimensions.get("window");
         <View style={styles.drawersetting}>
           <TouchableOpacity
          
-            onPress={() =>
+            onPress={() =>{
+              this.props.setType('favorite');
               this.props.navigation.navigate('Eat', { name: "Favorite" })
+              this.props.navigation.closeDrawer()}
+              
             }
             style={styles.favoriteview}
           >
@@ -65,8 +80,10 @@ let dim = Dimensions.get("window");
           </TouchableOpacity>
           <TouchableOpacity
           
-            onPress={() =>
+            onPress={() =>{
+              this.props.setType('Setting');
               this.props.navigation.navigate('Eat', { name: "Setting" })
+              this.props.navigation.closeDrawer()}
             }
             style={styles.setting}
           >
@@ -79,18 +96,7 @@ let dim = Dimensions.get("window");
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity
-          
-            onPress={() =>
-              this.props.navigation.navigate('Home')
-            }
-            style={styles.setting}
-          >
-          <View style={styles.favoriteview}>
-          <Icon name='home' size={27} color='green' style={styles.icon}/>
-            <Text style={styles.textfavorite}>Home</Text>
-            </View>
-          </TouchableOpacity>
+         
         </View>
       </View>
     );
@@ -114,7 +120,7 @@ const styles = StyleSheet.create({
     borderColor: "#D1D8D8"
   },
   drawersetting: {
-    flex: 3,
+    flex:2,
     
   },
   list: {
@@ -167,4 +173,10 @@ const styles = StyleSheet.create({
       marginLeft:25
   }
 });
-export default connect( null ,{ setType})(DrawerComponent)
+
+const mapStateToProps = state => {
+  return {
+      item: state.reducer,
+  };
+};
+export default connect( mapStateToProps,{ setType})(DrawerComponent)

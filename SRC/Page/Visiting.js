@@ -37,12 +37,20 @@ class Visiting extends Component {
                                 <View style={styles.boxtext}>
                                     <Text style={styles.textoption}>{item.option}</Text>
                                     <Text style={styles.text}>{item.type}</Text>
-                                    
+                                    <View style={styles.date}>
+                                    <Text style={styles.textdate}>{item.date}</Text>
+                                    <Text style={styles.texttime}>{item.time}</Text>
+                                    </View>
                                 </View>
+                                <View style={styles.button}>
                                 <TouchableOpacity onPress={() => this.props.setRemoveItem(item.id)}
                                 style={styles.delete}>
-                                        <Text>Delete</Text>
+                                        <Text style={styles.textdelete}>Delete</Text>
                                     </TouchableOpacity>
+                                    <TouchableOpacity style={styles.delete}>
+                                        <Text style={styles.textedite}>Edite</Text>
+                                    </TouchableOpacity>
+                                    </View>
                             </View>
 
                         }
@@ -104,20 +112,24 @@ const styles = StyleSheet.create({
         paddingVertical:5,
         
     },
+    button:{
+        flexDirection:'column',
+       
+    },
 
     boxGreen:{
         flexDirection:'row',
         borderColor:'#123738',
         borderWidth:1,
         backgroundColor:'#174849',
-        width:320,
-        height:100,
+        flex:5,
         paddingVertical:5,
         justifyContent:'space-between',
         marginTop:10,
         alignItems: 'center',
         paddingHorizontal: 10,
-        elevation:10
+        elevation:10,
+        borderRadius:5
     },
     boxtext:{
         width:200,
@@ -130,7 +142,29 @@ const styles = StyleSheet.create({
         backgroundColor:'pink',
         marginLeft:30,
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        margin:5,
+        borderRadius:7
+    },
+    textdelete:{
+        color:'red',
+        fontWeight:'500'
+    },
+    textedite:{
+        color:'#348C16',
+        fontWeight:'500'
+    },
+    date:{
+        flexDirection:'row',
+        
+    },
+    textdate:{
+        margin:10,
+        color:'white'
+    },
+    texttime:{
+        margin:10,
+        color:'white'
     }
 });
 

@@ -15,6 +15,7 @@ import { createSwitchNavigator, createAppContainer,createStackNavigator,createDr
 import Eat from './Eat'
 import {connect} from 'react-redux'
 import {setType} from '../Services/action'
+import rootstack from "../route";
 
 
 let dim=Dimensions.get('window')
@@ -23,8 +24,8 @@ let dim=Dimensions.get('window')
  class Home extends Component {
 
       render() {
-        // const { navigation } = this.props;
-        // const name = navigation.getParam('name');
+        const { navigation } = this.props;
+        const name = navigation.getParam('name');
         return (
             
             <View style={styles.countainer}>
@@ -41,10 +42,11 @@ let dim=Dimensions.get('window')
             <View style={styles.body}>
             <View style={styles.options}>
             <TouchableOpacity 
-            
-                onPress={() =>{ 
-                  // this.props.setType(this.props.name);
-                  this.props.navigation.navigate('Eat',{ name :'work', backgroundColor:'#EC400D'})}}
+
+                onPress={() =>
+                  this.props.navigation.navigate('Eat',{ name :'work', backgroundColor:'#EC400D'})
+
+                }
                 style={[styles.Viewoption,{backgroundColor:'#EC400D'}]}>
                 <Text style={styles.textoption}>Work</Text>
             </TouchableOpacity>
@@ -137,7 +139,7 @@ let dim=Dimensions.get('window')
       const AppNavigator = createSwitchNavigator(
         {
             Home: Home,
-           Eat22:Eat,
+           Eat22:rootstack,
            
            
           },
@@ -147,20 +149,15 @@ let dim=Dimensions.get('window')
         
           
         
-        const AppContainer = createAppContainer(AppNavigator);
-        class App extends Component {
         
-           render() {
-             return <AppContainer />;
-           }
-         }
+      
 
          const mapStateToProps=(state)=>{
           return{
            
-            items : state.item
+            item : state.items
           }
           
           }
          
-        export default connect(mapStateToProps,{setType})(App);
+        export default connect(mapStateToProps,{setType})(AppNavigator);

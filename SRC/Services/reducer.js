@@ -1,4 +1,4 @@
-import {REMOVE_ITEM,FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_FAILURE,FETCH_TYPE,FETCH_ITEM} from './type';
+import {REMOVE_ITEM,FETCH_PRODUCTS_BEGIN,SEARCH_ITEM,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_FAILURE,FETCH_TYPE,FETCH_ITEM} from './type';
   
   const initialState = {
     id: 0,
@@ -22,7 +22,17 @@ import {REMOVE_ITEM,FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_F
           items: action.payload,
           selectedItem: action.payload,
         };
-  
+
+        case SEARCH_ITEM:
+        let filteredDatas =[]
+        filteredDatas = 
+            state.selectedItem.filter(item => 
+                item.type.toUpperCase().includes(action.payload.toUpperCase())
+            );
+        return {
+            ...state,
+            selectedItem : [...filteredDatas]
+    };
       case FETCH_PRODUCTS_FAILURE:
         return {
           ...state,
@@ -46,14 +56,13 @@ import {REMOVE_ITEM,FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_F
                 ...state.selectedItem.slice(indexSelected + 1 )
             ]
         };
-
+        
         case FETCH_ITEM:
             return {
                 ...state,
                 items : [...state.items , action.payload],
                 selectedItem : [...state.selectedItem , action.payload]
             };
-            
             case FETCH_TYPE:
             let filteredData=[]
       
