@@ -11,25 +11,33 @@ import  Eat from '../Page/Eat'
 
 
 let connectedEat = Eat;
+
+// const eatStack = createStackNavigator({
+//   Eat: {
+//     screen: connectedEat,
+//   },
+// })
+
+// eatStack.navigationOptions = {
+//   tabBarLabel: 'Home!',
+// };
+
 const rootstack = createDrawerNavigator(
     {
-      Eat: {
-        screen: connectedEat
-      },
-      Work: {
-        screen: connectedEat
+      Eat:{
+        screen: Eat
       },
       Visite: {
-        screen: connectedEat
+        screen: Eat
       },
       Learning: {
-        screen: connectedEat
+        screen: Eat
       },
       Shoping:{
-        screen:connectedEat
+        screen:Eat
       },
       Film:{
-        screen:connectedEat
+        screen:Eat
       }
     
     },

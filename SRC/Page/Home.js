@@ -5,42 +5,103 @@ import {
   StyleSheet,
   Image,
   Dimensions,
+  Animated,
   FlatList,
   Button,
   ScrollView,
   TouchableHighlight,
   TouchableOpacity,
+  Easing
+  
 } from "react-native";
 import { createSwitchNavigator, createAppContainer,createStackNavigator,createDrawerNavigator} from "react-navigation";
 import Eat from './Eat'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import {connect} from 'react-redux'
 import {setType} from '../Services/action'
 import rootstack from "../route";
+import Setting from './Setting'
 
 
 let dim=Dimensions.get('window')
 
 
  class Home extends Component {
+  static navigationOptions={
+    
+    title:'Choose Option',
+    headerStyle:{
+      backgroundColor:'blue'
+    }
+  
+   }
 
+
+
+
+
+  constructor(props){
+    super(props);
+    this.state={
+      animatedValue:new Animated.Value(100),
+      animatedValue2:new Animated.Value(-100)
+    }}
+
+  componentDidMount () {
+    this.animate()
+  }
+  animate =()=> {
+    Animated.timing(
+      this.state.animatedValue,
+      {
+        toValue: 0,
+        duration: 1000,
+        useNativeDriver:true,
+        easing:Easing.back()
+      }
+    ).start()
+    Animated.timing(
+      this.state.animatedValue2,
+      {
+        toValue:0,
+        duration:1000,
+        useNativeDriver:true,
+        easing:Easing.back()
+      }
+    ).start()
+  }
       render() {
         const { navigation } = this.props;
         const name = navigation.getParam('name');
+
+        // const movingMargin = this.animatedValue.interpolate({
+        //   inputRange: [0, 0.5, 1],
+        //   outputRange: [-300, 300, 0]
+        // })
+        // const movingMarginright = this.animatedValue.interpolate({
+        //   inputRange: [0, 0.5, 1],
+        //   outputRange: [300, -300, 0]
+        // })
+        // const topMargin = this.animatedValue.interpolate({
+        //   inputRange: [0, 1],
+        // outputRange: [-100, 10]
+        // })
         return (
             
             <View style={styles.countainer}>
-            <View style={styles.headerStyle}>
+           <View style={styles.headerStyle}>
                 <Image 
                   source={require('../assets/Photo/logo8.png')}
                   style={styles.logotitle}
                 />
                 <Text style={styles.headerText}>Choose Option</Text>
-            </View>
+            </View> 
 
          
             
             <View style={styles.body}>
             <View style={styles.options}>
+            <Animated.View style={{transform:[{translateX:this.state.animatedValue}]}}>
             <TouchableOpacity 
 
                 onPress={() =>
@@ -50,31 +111,42 @@ let dim=Dimensions.get('window')
                 style={[styles.Viewoption,{backgroundColor:'#EC400D'}]}>
                 <Text style={styles.textoption}>Work</Text>
             </TouchableOpacity>
+            </Animated.View>
+            <Animated.View style={[{transform:[{translateX:this.state.animatedValue2}]}]}>
             <TouchableOpacity
                  onPress={() => this.props.navigation.navigate('Eat',{ name :'Film To Watch', backgroundColor:'#D573ED'})}
                 style={[styles.Viewoption,{backgroundColor:'#D573ED'}]}>
                 <Text style={styles.textoption}>Film To Watch</Text>
             </TouchableOpacity>
+            </Animated.View>
+            <Animated.View style={{transform:[{translateX:this.state.animatedValue}]}}>
             <TouchableOpacity
                  onPress={() => this.props.navigation.navigate('Eat',{ name :'Learning',backgroundColor:'#3C52F6'})}
                 style={[styles.Viewoption,{backgroundColor:'#3C52F6'}]}>
                 <Text style={styles.textoption}>Learning</Text>
             </TouchableOpacity>
+            </Animated.View>
+            <Animated.View style={[{transform:[{translateX:this.state.animatedValue2}]}]}>
             <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('Eat',{ name :'Shoping' , backgroundColor:'#C9D751'})}
                 style={[styles.Viewoption,{backgroundColor:'#C9D751'}]}>
                 <Text style={styles.textoption}>Shoping</Text>
             </TouchableOpacity>
+            </Animated.View>
+            <Animated.View style={{transform:[{translateX:this.state.animatedValue}]}}>
             <TouchableOpacity
                  onPress={() => this.props.navigation.navigate('Eat',{ name :'Visit' , backgroundColor:'#e45'})}
                 style={[styles.Viewoption,{backgroundColor:'#e45'}]}>
                 <Text style={styles.textoption}>Visit</Text>
             </TouchableOpacity>
+            </Animated.View>
+            <Animated.View style={[{transform:[{translateX:this.state.animatedValue2}]}]}>
             <TouchableOpacity
                  onPress={() => this.props.navigation.navigate('Eat',{ name :'Eat' , backgroundColor:'#3BE152'})}
                 style={[styles.Viewoption,{backgroundColor:'#3BE152'}]}>
                 <Text style={styles.textoption}>Eat</Text>
             </TouchableOpacity>
+            </Animated.View>
             </View>
             </View>
             </View>
@@ -128,21 +200,26 @@ let dim=Dimensions.get('window')
        marginLeft:10
      },
      logotitle:{
-       width:50,
-       height:50,
-       marginTop:10,
+      width:60,
+      height:60,
+      marginLeft:20
+     },
+     iconheader:{
        marginLeft:10
      }
     })
 
 
-      const AppNavigator = createSwitchNavigator(
+      const AppNavigator = createStackNavigator(
         {
             Home: Home,
            Eat22:rootstack,
            
            
           },
+          { 
+            initialRouteName : 'Home'
+          }
       
         );
         

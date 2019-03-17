@@ -10,16 +10,20 @@ import {
   TouchableOpacity
 } from "react-native";
 import { datadrawer } from "./ComponentData/DrawerData";
-import { TouchableHighlight } from "react-native-gesture-handler";
+import { TouchableHighlight,Animated} from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {setType} from '../Services/action'
 import{connect} from 'react-redux'
 let dim = Dimensions.get("window");
  class DrawerComponent extends Component {
+ 
+
   render() {
-    
+  
     return (
       <View style={styles.countainer}>
+     
+            
         <View style={styles.headerdrawer}>
           <Text style={styles.list}>List</Text>
         </View>
@@ -98,6 +102,7 @@ let dim = Dimensions.get("window");
 
          
         </View>
+    
       </View>
     );
   }

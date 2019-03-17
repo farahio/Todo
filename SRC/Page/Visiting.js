@@ -5,6 +5,7 @@ import {setType,fetchProducts,setItem, setRemoveItem}  from '../Services/action'
 
 
 class Visiting extends Component {
+   
 
     componentDidMount(){
         this.props.fetchProducts() 
@@ -26,6 +27,7 @@ class Visiting extends Component {
 
         return (
             <View style={styles.container}>
+            
           
                            
                             <FlatList

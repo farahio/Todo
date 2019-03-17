@@ -24,7 +24,9 @@ import Visiting from "./Visiting";
 
 let dim = Dimensions.get("window");
 
-class Eat extends Component {
+class Eat22 extends Component {
+  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -33,6 +35,8 @@ class Eat extends Component {
     };
   }
 
+
+ 
 
   settingSearch() {
     this.setState({ select: true });
@@ -105,7 +109,7 @@ class Eat extends Component {
                   placeholder={"Search here..."}
                   value = {this.state.searchText}
                   onChangeText= {this.setTextSearch.bind(this)}
-                  style={{ height: 50, marginRight: 40 }}
+                  style={styles.textInput2}
                 />
               </View>
             </View>
@@ -239,9 +243,18 @@ const styles = StyleSheet.create({
   textInput:{ 
     width: 350, 
     height: 50, 
-    backgroundColor: "white" 
+    backgroundColor: "white" ,
+    borderRadius:5
   },
-  iconBack:{marginLeft:10}
+  iconBack:{
+    marginLeft:10
+  },
+  textInput2: { 
+    height: 50,
+    marginRight: 40,
+    borderRadius: 5,
+  
+     }
 });
 
 const mapStateToProps = state => {
@@ -249,6 +262,6 @@ const mapStateToProps = state => {
     items: state.item,
   };
 };
-export default connect(mapStateToProps,{ fetchProducts, setItem,setType,setSearchItem})(Eat);
+export default connect(mapStateToProps,{ fetchProducts, setItem,setType,setSearchItem})(Eat22);
 
  
