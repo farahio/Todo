@@ -210,7 +210,7 @@ let dim=Dimensions.get('window')
     })
 
 
-      const AppNavigator = createStackNavigator(
+      const AppNavigator = createSwitchNavigator(
         {
             Home: Home,
            Eat22:rootstack,

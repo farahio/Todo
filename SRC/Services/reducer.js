@@ -1,4 +1,4 @@
-import {REMOVE_ITEM,FETCH_PRODUCTS_BEGIN,SEARCH_ITEM,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_FAILURE,FETCH_TYPE,FETCH_ITEM} from './type';
+import {REMOVE_ITEM,FETCH_PRODUCTS_BEGIN,SEARCH_ITEM,FETCH_PRODUCTS_SUCCESS,EDITE_ITEM,FETCH_PRODUCTS_FAILURE,FETCH_TYPE,FETCH_ITEM} from './type';
   
   const initialState = {
     id: 0,
@@ -54,6 +54,30 @@ import {REMOVE_ITEM,FETCH_PRODUCTS_BEGIN,SEARCH_ITEM,FETCH_PRODUCTS_SUCCESS,FETC
             selectedItem : [
                 ...state.selectedItem.slice(0,indexSelected),
                 ...state.selectedItem.slice(indexSelected + 1 )
+            ]
+        };
+
+        case EDITE_ITEM : 
+        
+
+        const indexT= state.items.findIndex(({ id }) => id == action.payload );
+        const indexSelectedT = state.selectedItem.findIndex(({ id }) => id == action.payload );
+        return {
+            ...state,
+            items : [
+                ...state.items.slice(0,indexT),
+
+                {"id": action.item.id , "type" : action.typeTemp
+                 , "date": action.item.date , "option":action.item.option},
+                
+                ...state.items.slice(indexT + 1 )
+            ],
+            selectedItem : [
+                ...state.selectedItem.slice(0,indexSelectedT),
+                
+                {"id": action.item.id , "type" : action.typeTemp , "date": action.item.date , "option":action.item.option},
+                
+                ...state.selectedItem.slice(indexSelectedT + 1 )
             ]
         };
         

@@ -19,24 +19,30 @@ import {
 import Icon from "react-native-vector-icons/FontAwesome";
 import DrawerComponent from "../Component/DrawerComponent";
 import { connect } from "react-redux";
-import { fetchProducts, setItem, setSearchItem,setType } from "../Services/action";
+import { fetchProducts, setItem, setRemoveItem,editItem,setSearchItem,setType} from "../Services/action";
 import Visiting from "./Visiting";
 
 let dim = Dimensions.get("window");
 
 class Eat22 extends Component {
   
+  componentDidMount(){
+    this.props.fetchProducts() 
+}
+
+
 
   constructor(props) {
     super(props);
     this.state = {
       text: "",
-      select: false
+      select: false,
+      selectItem:0,
+      item:null,
+      edit:false
     };
   }
 
-
- 
 
   settingSearch() {
     this.setState({ select: true });
@@ -50,10 +56,20 @@ class Eat22 extends Component {
       })
   }
 
+  
   showSearch=()=>{
     this.setState({
       select:true
     })
+  }
+
+  setTextEdit(input,item) {
+    this.setState({ 
+      edit : true,
+      item:item,
+      text: input 
+    });
+
   }
 
   setText(input) {
@@ -85,7 +101,7 @@ class Eat22 extends Component {
         <TouchableOpacity onPress={() =>this.props.navigation.openDrawer()}>
                 <Icon name="align-justify" size={22} color='white' style={{marginLeft:15}} />
             </TouchableOpacity>
-            <Text style={styles.textoption}>{name}</Text>
+            <Text style={styles.textoption2}>{name}</Text>
         </View>
        
            <View style = {[styles.headerStyle , {justifyContent : 'flex-end'}]}>
@@ -123,7 +139,35 @@ class Eat22 extends Component {
 
         <View style={styles.bodyStyle}>
           <View style={styles.Listener}>
-            <Visiting />
+          <FlatList
+                            data={this.props.selectedItem}
+                            keyExtractor={item => item.date.toString()}
+                            
+                            renderItem={({item,})=>
+        
+                            <View style={styles.boxGreen}>
+                                <View style={styles.boxtext}>
+                                    <Text style={styles.textoption}>{item.option}</Text>
+                                    <Text style={styles.text}>{item.type}</Text>
+                                    <View style={styles.date}>
+                                    <Text style={styles.textdate}>{item.date}</Text>
+                                    <Text style={styles.texttime}>{item.time}</Text>
+                                    </View>
+                                </View>
+                                <View style={styles.button}>
+                                <TouchableOpacity onPress={() => this.props.setRemoveItem(item.id)}
+                                style={styles.delete}>
+                                        <Text style={styles.textdelete}>Delete</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity  style={styles.delete} onPress={ this.setTextEdit.bind(this,item.type , item)}>
+                                        <Text style={styles.textedite}>Edite</Text>
+                                    </TouchableOpacity>
+                                    </View>
+                            </View>
+
+                        }
+                        />
+             
           </View>
           <View style={styles.Changer}>
             <TextInput
@@ -135,8 +179,12 @@ class Eat22 extends Component {
             />
             <TouchableOpacity
               onPress={() => {
-                if (this.state.text.length > 0) {
+                if (this.state.text.length > 0 && !this.state.edit) {
                   this.props.setItem(this.state.text, name);
+                  this.setState({ text: "" });
+                }
+                if (this.state.text.length > 0 && this.state.edit) {
+                  this.props.editItem(this.state.item.id, this.state.text ,this.state.item);
                   this.setState({ text: "" });
                 }
               }}
@@ -153,7 +201,9 @@ class Eat22 extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    alignItems:'center',
+    backgroundColor:'#e7e7e7'
   },
   searchStyle: {
     width: 35,
@@ -192,29 +242,29 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "#e7e7e7"
   },
-  textoption: {
+  textoption2: {
     color: "white",
-    marginLeft: 20,
+    marginLeft: 30,
     fontSize: 22
   },
   inputStyle: {
-    flex: 8,
-    height: 60,
-    backgroundColor: "#f2f3f7",
+    flex:8,
+    backgroundColor:'white',
     borderWidth: 2,
     borderColor: "#E1E2E7",
     borderBottomColor: "#F10C39",
     marginBottom: 30,
-    margin: 10,
+    marginVertical: 10,
     elevation: 15
   },
   bottonStyle: {
-    flex: 1,
+   flex:2,
+    marginVertical:10,
     justifyContent: "center",
     alignItems: "center",
     elevation: 15,
-    marginBottom: 20,
-    marginRight: 10
+   
+    marginHorizontal: 5
   },
 
   fontStyle: {
@@ -254,14 +304,115 @@ const styles = StyleSheet.create({
     marginRight: 40,
     borderRadius: 5,
   
-     }
+     },
+     box:{
+      flex:1,
+       alignItems:'center',
+       justifyContent:'space-between',
+       flexDirection:'row',
+       
+       
+   },
+   boxOn:{
+       width:350,
+      height:300,
+      backgroundColor:'#256a75',
+      borderRadius:10,
+      margin:15,
+      alignItems:'center',
+      flexDirection:'row',
+      paddingHorizontal:10,
+      elevation:15
+   },
+
+   textMain:{
+       color:'white',
+       fontSize:18,
+       flex: 1,
+       textAlign: 'left'
+   },
+   flatImage:{
+       width:15,
+       height:15,
+       position:'relative',
+       paddingRight:20,
+   },
+   text:{
+       color:'white',
+       fontWeight:'bold',
+       fontSize:18,
+       paddingVertical:5,
+       alignSelf:'flex-end',
+   },
+   textoption:{
+       color:'white',
+       fontWeight:'bold',
+       fontSize:22,
+       paddingVertical:5,
+       
+   },
+   button:{
+       flexDirection:'column',
+      
+   },
+
+   boxGreen:{
+       flexDirection:'row',
+       borderColor:'#123738',
+       borderWidth:1,
+       backgroundColor:'#174849',
+       flex:5,
+       paddingVertical:5,
+       justifyContent:'space-between',
+       marginTop:10,
+       alignItems: 'center',
+       paddingHorizontal: 10,
+       elevation:10,
+       borderRadius:5
+   },
+   boxtext:{
+       width:200,
+       
+     
+   },
+   delete:{
+       width:50,
+       height:50,
+       backgroundColor:'pink',
+       marginLeft:30,
+       justifyContent:'center',
+       alignItems:'center',
+       margin:5,
+       borderRadius:7
+   },
+   textdelete:{
+       color:'red',
+       fontWeight:'500'
+   },
+   textedite:{
+       color:'#348C16',
+       fontWeight:'500'
+   },
+   date:{
+       flexDirection:'row',
+       
+   },
+   textdate:{
+       margin:10,
+       color:'white'
+   },
+   texttime:{
+       margin:10,
+       color:'white'
+   }
 });
 
 const mapStateToProps = state => {
   return {
     items: state.item,
+    selectedItem: state.selectedItem,
   };
 };
-export default connect(mapStateToProps,{ fetchProducts, setItem,setType,setSearchItem})(Eat22);
+export default connect(mapStateToProps,{ fetchProducts, setItem,setType,setSearchItem,setRemoveItem,editItem})(Eat22);
 
  

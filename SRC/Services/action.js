@@ -1,4 +1,7 @@
-import {FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_FAILURE,FETCH_TYPE,FETCH_ITEM,REMOVE_ITEM,SEARCH_ITEM} from './type';
+import {FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_FAILURE,FETCH_TYPE,EDITE_ITEM,FETCH_ITEM,REMOVE_ITEM,SEARCH_ITEM} from './type';
+
+
+
 
 
 
@@ -52,6 +55,17 @@ import {FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_FAILURE,FETCH
   
     return setSearchAction (text);
   };
+
+  
+  const editAction = (id, type , item) => {
+    return{
+        type : EDITE_ITEM,
+        payload : id,
+        typeTemp : type,
+        item : item
+    }
+  }
+
   
   export const setItem = (text , type ) => {
     var now = new Date();
@@ -124,4 +138,29 @@ export const setType = type =>{
         .catch(error => dispatch(fetchProductsFailure(error)));
     };
   };
+
   
+  export const editItem = (id , type , item) => {
+    
+    return dispatch => {
+       
+        let data = {
+            "type": type
+        };
+        const url = "http://10.0.2.2:3000/tasks/";
+        fetch(`${url}${id}/?type=${type}`,
+            {
+                method: 'PATCH',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            }
+        )
+            .then(response => response.json())
+            .then(data => {
+                dispatch(editAction(id , type , item))
+            })
+    }
+  };

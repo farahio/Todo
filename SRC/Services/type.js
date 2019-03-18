@@ -5,3 +5,4 @@ export const FETCH_TYPE = 'FETCH_TYPE';
 export const FETCH_ITEM='FETCH_ITEM';
 export const REMOVE_ITEM = 'REMOVE_ITEM'
 export const SEARCH_ITEM = 'SEARCH_ITEM'
+export const EDITE_ITEM = 'EDIT_ITEM'
