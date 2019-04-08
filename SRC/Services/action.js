@@ -1,10 +1,6 @@
 import {FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_FAILURE,FETCH_TYPE,EDITE_ITEM,FETCH_ITEM,REMOVE_ITEM,SEARCH_ITEM} from './type';
 
 
-
-
-
-
   
   const fetchProductsBegin = () => ({
     type: FETCH_PRODUCTS_BEGIN
@@ -116,9 +112,6 @@ import {FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_FAILURE,FETCH
   
 
 
-//   export const  setItem = (text) => {
-//     return setItemAction(text);
-// } ;
 
 
 export const setType = type =>{

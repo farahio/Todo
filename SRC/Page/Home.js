@@ -18,10 +18,9 @@ import { createSwitchNavigator, createAppContainer,createStackNavigator,createDr
 import Eat from './Eat'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {connect} from 'react-redux'
-import {setType} from '../Services/action'
+import {setType, fetchProducts} from '../Services/action'
 import rootstack from "../route";
-import Setting from './Setting'
-
+import {datadrawer} from "../Component/ComponentData/DrawerData"
 
 let dim=Dimensions.get('window')
 
@@ -48,6 +47,9 @@ let dim=Dimensions.get('window')
     }}
 
   componentDidMount () {
+   
+    this.props.fetchProducts()
+
     this.animate()
   }
   animate =()=> {
@@ -70,6 +72,11 @@ let dim=Dimensions.get('window')
       }
     ).start()
   }
+
+  onPresser=()=>{
+    this.props.navigation.navigate('Eat',{ name :'Film To Watch', backgroundColor:'#D573ED'})
+    this.props.setType(datadrawer[0].title)
+  }
       render() {
         const { navigation } = this.props;
         const name = navigation.getParam('name');
@@ -86,6 +93,8 @@ let dim=Dimensions.get('window')
         //   inputRange: [0, 1],
         // outputRange: [-100, 10]
         // })
+
+        
         return (
             
             <View style={styles.countainer}>
@@ -114,7 +123,7 @@ let dim=Dimensions.get('window')
             </Animated.View>
             <Animated.View style={[{transform:[{translateX:this.state.animatedValue2}]}]}>
             <TouchableOpacity
-                 onPress={() => this.props.navigation.navigate('Eat',{ name :'Film To Watch', backgroundColor:'#D573ED'})}
+                 onPress={this.onPresser.bind(this)}
                 style={[styles.Viewoption,{backgroundColor:'#D573ED'}]}>
                 <Text style={styles.textoption}>Film To Watch</Text>
             </TouchableOpacity>
@@ -237,4 +246,4 @@ let dim=Dimensions.get('window')
           
           }
          
-        export default connect(mapStateToProps,{setType})(AppNavigator);
+        export default connect(mapStateToProps,{setType,fetchProducts})(AppNavigator);

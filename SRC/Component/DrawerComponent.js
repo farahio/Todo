@@ -14,6 +14,7 @@ import { TouchableHighlight,Animated} from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {setType} from '../Services/action'
 import{connect} from 'react-redux'
+import Favorite from '../Page/Favorite'
 let dim = Dimensions.get("window");
  class DrawerComponent extends Component {
  
@@ -27,29 +28,18 @@ let dim = Dimensions.get("window");
         <View style={styles.headerdrawer}>
           <Text style={styles.list}>List</Text>
         </View>
-        <TouchableOpacity
-          
-          onPress={() =>
-            this.props.navigation.navigate('Home')
-          }
-          style={styles.setting}
-        >
-        <View style={styles.favoriteview}>
-        <Icon name='home' size={30} color='green' style={styles.icon}/>
-          <Text style={styles.textfavorite}>Home</Text>
-          </View>
-        </TouchableOpacity>
         <View style={styles.draweroption}>
           <FlatList
             data={datadrawer}
             keyExtractor={item => item.title}
+            
             renderItem={({ item }) => (
               <TouchableOpacity
               
               onPress={() => {
                 
                 this.props.setType(item.title );
-                this.props.navigation.navigate('Eat',{ name :item.title,color:item.Color})
+                this.props.navigation.navigate('Eat',{ name :item.title,Color:item.Color})
                 this.props.navigation.closeDrawer()
               }}
                 
@@ -67,8 +57,8 @@ let dim = Dimensions.get("window");
           <TouchableOpacity
          
             onPress={() =>{
-              this.props.setType('favorite');
-              this.props.navigation.navigate('Eat', { name: "Favorite" })
+            
+              this.props.navigation.navigate('Favorite')
               this.props.navigation.closeDrawer()}
               
             }
@@ -85,8 +75,8 @@ let dim = Dimensions.get("window");
           <TouchableOpacity
           
             onPress={() =>{
-              this.props.setType('Setting');
-              this.props.navigation.navigate('Eat', { name: "Setting" })
+              
+              this.props.navigation.navigate('Setting')
               this.props.navigation.closeDrawer()}
             }
             style={styles.setting}
@@ -184,4 +174,4 @@ const mapStateToProps = state => {
       item: state.reducer,
   };
 };
-export default connect( mapStateToProps,{ setType})(DrawerComponent)
+export default connect( mapStateToProps,{setType})(DrawerComponent)

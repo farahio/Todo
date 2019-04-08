@@ -2,15 +2,18 @@
 import {
   createStackNavigator,
   createAppContainer,
-  createDrawerNavigator
+  createDrawerNavigator,
+  createSwitchNavigator
 } from "react-navigation";
 import Icon from "react-native-vector-icons/FontAwesome";
 import DrawerComponent from "../Component/DrawerComponent";
 import {connect} from 'react-redux'
 import  Eat from '../Page/Eat'
+import Favorite from "../Page/Favorite";
+
+import Setting from '../Page/Setting'
 
 
-let connectedEat = Eat;
 
 // const eatStack = createStackNavigator({
 //   Eat: {
@@ -22,22 +25,60 @@ let connectedEat = Eat;
 //   tabBarLabel: 'Home!',
 // };
 
+const stack = createStackNavigator(
+  {
+    // Eat22:rootstack,
+    // Favorite:Favorite,
+    // Setting:Setting
+    Eat:{
+      screen: Eat
+    },
+    Visite: {
+      screen: Eat
+    },
+    Learning: {
+      screen: Eat
+    },
+    Shoping:{
+      screen:Eat
+    },
+    Film:{
+      screen:Eat
+    },
+    Favorite:{
+      screen:Favorite
+    },
+    Setting:{
+      screen:Setting
+    }
+  },
+  {
+    initialRouteName:'Eat'
+  }
+)
+
 const rootstack = createDrawerNavigator(
     {
       Eat:{
-        screen: Eat
+        screen: stack
       },
       Visite: {
-        screen: Eat
+        screen: stack
       },
       Learning: {
-        screen: Eat
+        screen: stack
       },
       Shoping:{
-        screen:Eat
+        screen:stack
       },
       Film:{
-        screen:Eat
+        screen:stack
+      },
+      Favorite:{
+        screen:stack
+      },
+      Setting:{
+        screen:stack
       }
     
     },

@@ -20,15 +20,21 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import DrawerComponent from "../Component/DrawerComponent";
 import { connect } from "react-redux";
 import { fetchProducts, setItem, setRemoveItem,editItem,setSearchItem,setType} from "../Services/action";
-import Visiting from "./Visiting";
+
 
 let dim = Dimensions.get("window");
 
-class Eat22 extends Component {
+class Eat extends Component {
+
   
   componentDidMount(){
-    this.props.fetchProducts() 
+    // this.props.fetchProducts() 
+    let titlename=this.props.navigation.getParam("name")
+    this.props.setType(titlename);
+    let themex = this.props.navigation.getParam("backgroundColor")
+    this.props.navigation.setParams({backgroundColor:themex})
 }
+
 
 
 
@@ -67,7 +73,8 @@ class Eat22 extends Component {
     this.setState({ 
       edit : true,
       item:item,
-      text: input 
+      text: input ,
+      color:'red'
     });
 
   }
@@ -82,67 +89,88 @@ class Eat22 extends Component {
       this.setState ({searchText : input})
       this.props.setSearchItem (input)
   }
-  
+
+
+  componentWillMount(){
+    this.props.setType(this.props.name)
+    const name = this.props.name;
+    // const color=this.chooseColor(name);
+    const stt= this.state;
+    this.props.navigation.setParams({name,stt});
+
+  }
+
+  static navigationOptions = ({ navigation }) => {
+    const { params } = navigation.state;
+   
+    return{
+      title : params ?  (params.name? params.name : 'All') : '' ,
+      headerTitleStyle:{
+        color:'white'
+      },
+      headerStyle:{
+        backgroundColor:navigation.getParam("backgroundColor")
+      },
+         
+      
+        headerLeft:(
+          <TouchableOpacity onPress={() =>navigation.openDrawer()}>
+          <Icon name="align-justify" size={22} color='white' style={styles.icon} />
+   
+          </TouchableOpacity>
+        ),
+      //   headerRight:(
+      //     <View>
+      //     {!params.state.select&&
+      //     <View style = {[styles.headerStyle , {justifyContent : 'flex-end'}]}>
+      //     <TouchableOpacity onPress= {this.settingSearch}>
+      //         <Icon name="search" size={22} color='black' style={{marginRight:15}}/>
+      //    </TouchableOpacity>
+         
+      // </View>}
+      // {params.state.select&&
+      //         <View style={styles.headerStyle}>
+      //       <TouchableOpacity onPress={ this.goBack.bind(this , name)} style={styles.iconBack}>
+      //         <Icon name="chevron-left" size={22}/>
+             
+      //       </TouchableOpacity>
+
+      //       <View style={{ marginLeft: 20 }}>
+      //         <View style={styles.textInput}>
+              
+      //           <TextInput
+      //             placeholder={"Search here..."}
+      //             value = {this.state.searchText}
+      //             onChangeText= {this.setTextSearch.bind(this)}
+      //             style={styles.textInput2}
+      //           />
+      //         </View>
+      //       </View>
+      //       </View>
+      //       }
+
+
+      // </View>
+      //   )
+     
+      
+    };
+    
+ 
+};
+
 
   render() {
-    const { navigation } = this.props;
-    const name = navigation.getParam("name");
-    const backgroundColor = navigation.getParam("backgroundColor");
-
+   
     return (
       <View style={styles.container}>
-        <View style={[styles.headerStyle,{justifyContent: "space-between",backgroundColor: backgroundColor}]}>
-        {!this.state.select&&
-       <View style={styles.headerStyle}>
-     <View style={styles.headerStyle}>
-
-
-           
-        <TouchableOpacity onPress={() =>this.props.navigation.openDrawer()}>
-                <Icon name="align-justify" size={22} color='white' style={{marginLeft:15}} />
-            </TouchableOpacity>
-            <Text style={styles.textoption2}>{name}</Text>
-        </View>
-       
-           <View style = {[styles.headerStyle , {justifyContent : 'flex-end'}]}>
-                <TouchableOpacity onPress= {this.settingSearch.bind(this)}>
-                    <Icon name="search" size={22} color='white' style={{marginRight:15}}/>
-               </TouchableOpacity>
-            </View>
-        </View>}
-
-
-        {this.state.select&&
-              <View style={styles.headerStyle}>
-            <TouchableOpacity onPress={ this.goBack.bind(this , name)} style={styles.iconBack}>
-              <Icon name="chevron-left" size={22}/>
-            </TouchableOpacity>
-
-            <View style={{ marginLeft: 20 }}>
-              <View style={styles.textInput}>
-              
-                <TextInput
-                  placeholder={"Search here..."}
-                  value = {this.state.searchText}
-                  onChangeText= {this.setTextSearch.bind(this)}
-                  style={styles.textInput2}
-                />
-              </View>
-            </View>
-            </View>
-            }
-
-
-
-        
-        </View>
-
+  
         <View style={styles.bodyStyle}>
           <View style={styles.Listener}>
           <FlatList
                             data={this.props.selectedItem}
-                            keyExtractor={item => item.date.toString()}
-                            
+                            keyExtractor={item => item.id.toString()}
+                           
                             renderItem={({item,})=>
         
                             <View style={styles.boxGreen}>
@@ -244,7 +272,7 @@ const styles = StyleSheet.create({
   },
   textoption2: {
     color: "white",
-    marginLeft: 30,
+   
     fontSize: 22
   },
   inputStyle: {
@@ -404,15 +432,16 @@ const styles = StyleSheet.create({
    texttime:{
        margin:10,
        color:'white'
-   }
+   },
+   icon:{marginLeft:15}
 });
 
 const mapStateToProps = state => {
   return {
-    items: state.item,
+    items: state.items,
     selectedItem: state.selectedItem,
   };
 };
-export default connect(mapStateToProps,{ fetchProducts, setItem,setType,setSearchItem,setRemoveItem,editItem})(Eat22);
+export default connect(mapStateToProps,{fetchProducts,setItem,setType,setSearchItem,setRemoveItem,editItem})(Eat);
 
  

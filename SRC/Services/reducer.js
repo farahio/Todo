@@ -100,6 +100,9 @@ import {REMOVE_ITEM,FETCH_PRODUCTS_BEGIN,SEARCH_ITEM,FETCH_PRODUCTS_SUCCESS,EDIT
             selectedItem : [...filteredData]
         };
 
+
+
+       
      
         default:
         return state;

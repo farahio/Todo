@@ -5,7 +5,7 @@ import {Provider}  from 'react-redux'
 import Home from './SRC/Page/Home'
 import reducer from './SRC/Services/reducer'
 import thunk from "redux-thunk"
-import Visiting from './SRC/Page/Visiting'
+
 import Loading from './SRC/Page/Loading'
 
 
