@@ -1,12 +1,16 @@
 import {REMOVE_ITEM,FETCH_PRODUCTS_BEGIN,SEARCH_ITEM,FETCH_PRODUCTS_SUCCESS,EDITE_ITEM,FETCH_PRODUCTS_FAILURE,FETCH_TYPE,FETCH_ITEM} from './type';
-  
+
   const initialState = {
     id: 0,
     items: [],
     selectedItem : [],
-  };
   
-  function reducer(state = initialState, action) {
+
+  };
+
+
+  
+  function fetchReducer(state = initialState, action) {
     switch (action.type) {
         case FETCH_PRODUCTS_BEGIN:
         return {
@@ -97,16 +101,12 @@ import {REMOVE_ITEM,FETCH_PRODUCTS_BEGIN,SEARCH_ITEM,FETCH_PRODUCTS_SUCCESS,EDIT
            
         return {
             ...state,
-            selectedItem : [...filteredData]
+            selectedItem : filteredData
         };
 
-
-
-       
-     
         default:
         return state;
     }
   }
   
-  export default reducer; 
+  export default fetchReducer; 

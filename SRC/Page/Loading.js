@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import { Button, View,ActivityIndicator,Image,Dimensions,Animated,StyleSheet,Easing} from 'react-native';
 import { createSwitchNavigator,createAppContainer} from 'react-navigation';
 import Home from './Home';
-import Main from '../route/Main'
+
 let dim = Dimensions.get('window')
 class Loading extends Component {
   constructor(props) {

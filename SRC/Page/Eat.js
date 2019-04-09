@@ -18,8 +18,9 @@ import {
 } from "react-navigation";
 import Icon from "react-native-vector-icons/FontAwesome";
 import DrawerComponent from "../Component/DrawerComponent";
+import Header from './Header'
 import { connect } from "react-redux";
-import { fetchProducts, setItem, setRemoveItem,editItem,setSearchItem,setType} from "../Services/action";
+import { fetchProducts, setItem, setRemoveItem,editItem,setSearchItem,setType} from "../Services/ServicesData/action";
 
 
 let dim = Dimensions.get("window");
@@ -28,11 +29,8 @@ class Eat extends Component {
 
   
   componentDidMount(){
-    // this.props.fetchProducts() 
-    let titlename=this.props.navigation.getParam("name")
-    this.props.setType(titlename);
-    let themex = this.props.navigation.getParam("backgroundColor")
-    this.props.navigation.setParams({backgroundColor:themex})
+    this.props.fetchProducts() 
+   
 }
 
 
@@ -91,77 +89,27 @@ class Eat extends Component {
   }
 
 
-  componentWillMount(){
-    this.props.setType(this.props.name)
-    const name = this.props.name;
-    // const color=this.chooseColor(name);
-    const stt= this.state;
-    this.props.navigation.setParams({name,stt});
+  // componentWillMount(){
+  //   this.props.setType(this.props.name)
+  //   const name = this.props.name;
+  //   // const color=this.chooseColor(name);
+  //   const stt= this.state;
+  //   this.props.navigation.setParams({name,stt});
 
-  }
+  // }
 
   static navigationOptions = ({ navigation }) => {
-    const { params } = navigation.state;
-   
+const inName = navigation.getParam("name","UNDEFINED")
+const inBackgroundcolor = navigation.getParam("backgroundColor", "gold")
     return{
-      title : params ?  (params.name? params.name : 'All') : '' ,
-      headerTitleStyle:{
-        color:'white'
-      },
-      headerStyle:{
-        backgroundColor:navigation.getParam("backgroundColor")
-      },
-         
-      
-        headerLeft:(
-          <TouchableOpacity onPress={() =>navigation.openDrawer()}>
-          <Icon name="align-justify" size={22} color='white' style={styles.icon} />
-   
-          </TouchableOpacity>
-        ),
-      //   headerRight:(
-      //     <View>
-      //     {!params.state.select&&
-      //     <View style = {[styles.headerStyle , {justifyContent : 'flex-end'}]}>
-      //     <TouchableOpacity onPress= {this.settingSearch}>
-      //         <Icon name="search" size={22} color='black' style={{marginRight:15}}/>
-      //    </TouchableOpacity>
-         
-      // </View>}
-      // {params.state.select&&
-      //         <View style={styles.headerStyle}>
-      //       <TouchableOpacity onPress={ this.goBack.bind(this , name)} style={styles.iconBack}>
-      //         <Icon name="chevron-left" size={22}/>
-             
-      //       </TouchableOpacity>
-
-      //       <View style={{ marginLeft: 20 }}>
-      //         <View style={styles.textInput}>
-              
-      //           <TextInput
-      //             placeholder={"Search here..."}
-      //             value = {this.state.searchText}
-      //             onChangeText= {this.setTextSearch.bind(this)}
-      //             style={styles.textInput2}
-      //           />
-      //         </View>
-      //       </View>
-      //       </View>
-      //       }
-
-
-      // </View>
-      //   )
-     
-      
-    };
-    
- 
+      header:<Header  backgroundcolor={inBackgroundcolor} name={inName}  />
 };
 
-
+  }
   render() {
-   
+    const { navigation} = this.props
+    const name = navigation.getParam("name","UNDEFINED")
+
     return (
       <View style={styles.container}>
   
@@ -267,8 +215,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#e7e7e7"
   },
   Changer: {
+    width:350,
     flexDirection: "row",
-    backgroundColor: "#e7e7e7"
+    
   },
   textoption2: {
     color: "white",
@@ -287,7 +236,7 @@ const styles = StyleSheet.create({
   },
   bottonStyle: {
    flex:2,
-    marginVertical:10,
+    marginVertical:20,
     justifyContent: "center",
     alignItems: "center",
     elevation: 15,
@@ -298,7 +247,8 @@ const styles = StyleSheet.create({
   fontStyle: {
     color: "#F10C39",
     fontWeight: "200",
-    fontSize: 14
+    fontSize: 14,
+    marginBottom:20
   },
   fontStyle2: {
     color: "#98042D",
@@ -438,8 +388,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    items: state.items,
-    selectedItem: state.selectedItem,
+    items: state.userReducer.items,
+    selectedItem: state.userReducer.selectedItem,
   };
 };
 export default connect(mapStateToProps,{fetchProducts,setItem,setType,setSearchItem,setRemoveItem,editItem})(Eat);

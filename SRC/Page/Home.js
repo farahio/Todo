@@ -18,7 +18,7 @@ import { createSwitchNavigator, createAppContainer,createStackNavigator,createDr
 import Eat from './Eat'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {connect} from 'react-redux'
-import {setType, fetchProducts} from '../Services/action'
+import {setType, fetchProducts} from '../Services/ServicesData/action'
 import rootstack from "../route";
 import {datadrawer} from "../Component/ComponentData/DrawerData"
 
@@ -48,7 +48,6 @@ let dim=Dimensions.get('window')
 
   componentDidMount () {
    
-    this.props.fetchProducts()
 
     this.animate()
   }
@@ -75,7 +74,7 @@ let dim=Dimensions.get('window')
 
   onPresser=()=>{
     this.props.navigation.navigate('Eat',{ name :'Film To Watch', backgroundColor:'#D573ED'})
-    this.props.setType(datadrawer[0].title)
+
   }
       render() {
         const { navigation } = this.props;
@@ -241,7 +240,7 @@ let dim=Dimensions.get('window')
          const mapStateToProps=(state)=>{
           return{
            
-            item : state.items
+            item : state.userReducer.items
           }
           
           }

@@ -3,7 +3,7 @@ export const datadrawer =[
     {
         image:require('../../assets/Photo/All.png'),
         title:'ALL',
-        id:1,
+        id:0,
        
     
     },

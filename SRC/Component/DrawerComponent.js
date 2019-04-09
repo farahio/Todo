@@ -12,7 +12,7 @@ import {
 import { datadrawer } from "./ComponentData/DrawerData";
 import { TouchableHighlight,Animated} from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {setType} from '../Services/action'
+import {setType} from '../Services/ServicesData/action'
 import{connect} from 'react-redux'
 import Favorite from '../Page/Favorite'
 let dim = Dimensions.get("window");
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   },
   option: {
     width: dim.width,
-    height: 65,
+    height: 60,
 
     flexDirection: "row",
     alignItems: "center"
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-      item: state.reducer,
+      item: state.userReducer.items,
   };
 };
 export default connect( mapStateToProps,{setType})(DrawerComponent)

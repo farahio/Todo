@@ -1,30 +1,6 @@
 {
   "tasks": [
     {
-      "option": "Work",
-      "type": "today work12 kill222222222222222222222222222222222",
-      "date": 1552733666694,
-      "id": 14
-    },
-    {
-      "option": "Work",
-      "type": "monday work 121 kill",
-      "date": 1552733682510,
-      "id": 15
-    },
-    {
-      "option": "Eat",
-      "type": "meet222222222",
-      "date": 1552733744614,
-      "id": 18
-    },
-    {
-      "option": "Eat",
-      "type": "gfjhdgshfjueryahuadhyfjhdsajhfdskhafgjkgfjhskshad fncvbjmsfgkjahk   aghjhkgje",
-      "date": 1552733754925,
-      "id": 19
-    },
-    {
       "option": "Film To Watch",
       "type": "25kiling",
       "date": 1552733773806,
@@ -61,13 +37,6 @@
       "date": "03/18/19",
       "time": "15:53:14",
       "id": 30
-    },
-    {
-      "option": "Visit",
-      "type": "monday work 121 kill2525",
-      "date": "03/18/19",
-      "time": "16:31:30",
-      "id": 31
     },
     {
       "option": "Learning",
@@ -110,6 +79,27 @@
       "date": "03/18/19",
       "time": "16:39:23",
       "id": 37
+    },
+    {
+      "option": "work",
+      "type": "cfyftcyuf",
+      "date": "04/09/19",
+      "time": "10:28:50",
+      "id": 38
+    },
+    {
+      "option": "Eat",
+      "type": "loving day",
+      "date": "04/09/19",
+      "time": "10:31:54",
+      "id": 39
+    },
+    {
+      "option": "Shoping",
+      "type": "fhfgh",
+      "date": "4/9/2019",
+      "time": "4:50:27 PM",
+      "id": 40
     }
   ]
 }
