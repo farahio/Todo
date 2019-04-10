@@ -6,3 +6,5 @@ export const FETCH_ITEM='FETCH_ITEM';
 export const REMOVE_ITEM = 'REMOVE_ITEM'
 export const SEARCH_ITEM = 'SEARCH_ITEM'
 export const EDITE_ITEM = 'EDIT_ITEM'
+export const GET_DONE_DATA='GET_DONE_DATA'
+export const CHANGE_STATUS='CHANGE_STATUS'

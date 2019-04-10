@@ -1,25 +1,19 @@
-import {CHANGE_THEME,} from './type'
+import {CHANGE_THEME} from './type'
 import {themes} from "../../Component/ThemeContext";
 
 const initialState = {
     theme: themes.light,
 }
-
-function usersReducer(state = initialState, action) {
-    
+export const usersReducer=(state = initialState, action)=> {
     switch (action.type) {
         case CHANGE_THEME:
             return {
                 theme:
-                state.theme === themes.dark
-                    ? themes.light
-                    : themes.dark,
-            
+                state.theme.id === themes.light.id
+                    ? themes.dark
+                    : themes.light
             };
-
         default:
             return state;
     }
-
 }
-export default usersReducer

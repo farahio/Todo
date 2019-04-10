@@ -1,4 +1,4 @@
-import {FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_FAILURE,FETCH_TYPE,EDITE_ITEM,FETCH_ITEM,REMOVE_ITEM,SEARCH_ITEM} from './type';
+import {FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_FAILURE,FETCH_TYPE,EDITE_ITEM,FETCH_ITEM,REMOVE_ITEM,SEARCH_ITEM,GET_DONE_DATA,CHANGE_STATUS} from './type';
 
 
   
@@ -52,7 +52,53 @@ import {FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_FAILURE,FETCH
     return setSearchAction (text);
   };
 
+
+  export const changeStatus = id=> {
   
+    return {
+        type : CHANGE_STATUS,
+        payload : id
+    }
+  }
+
+  export const getDoneData =data=> {
+  
+    return {
+        type : GET_DONE_DATA,
+        payload : data
+    }
+  }
+  
+
+
+  export const getDone= (id) => {
+    return dispatch => {
+      
+        let data = {
+            "isComplete": true
+        };
+        let trueComplete = true;
+        const url = `http://10.0.2.2:3000/tasks/`;
+        fetch(`${url}${id}/?isComplete=${trueComplete}`,
+            {
+                method: 'PATCH',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            }
+        )
+            .then(response => response.json())
+            .then(data => {
+                dispatch(changeStatus(id))
+            })
+    }
+};
+
+  
+
+
   const editAction = (id, type , item) => {
     return{
         type : EDITE_ITEM,
@@ -70,8 +116,8 @@ import {FETCH_PRODUCTS_BEGIN,FETCH_PRODUCTS_SUCCESS,FETCH_PRODUCTS_FAILURE,FETCH
             "option": type,
             "type": text,
             "date":now.toLocaleDateString(),
-            "time":now.toLocaleTimeString()
-            
+            "time":now.toLocaleTimeString(),
+            "iscomplete":true
         };
         fetch(`http://10.0.2.2:3000/tasks`,
             {
@@ -125,6 +171,7 @@ export const setType = type =>{
         .then(data =>  data.json())
         .then(data => {
           dispatch(fetchProductsSuccess(data));
+          dispatch(getDoneData(data))
         })
         .catch(error => dispatch(fetchProductsFailure(error)));
     };

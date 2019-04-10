@@ -65,11 +65,10 @@ let dim = Dimensions.get("window");
             style={styles.favoriteview}
           >
           <View style={styles.favoriteview}>
-           <Image
-              source={require("../assets/Photo/hearts.png")}
+           <Icon name="check" color="green" size={24}
               style={styles.favorite}
             /> 
-            <Text style={styles.textfavorite}>Favorite</Text>
+            <Text style={styles.textfavorite}>Done</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity

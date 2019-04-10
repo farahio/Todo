@@ -8,7 +8,7 @@ import Loading from './Loading';
 class Theme extends Component {
     render() {
         return (
-            <ThemeContext.Provider value={this.props.changeReducer.theme}>
+            <ThemeContext.Provider value={this.props.changeReducer}>
                 <Loading/>
             </ThemeContext.Provider>
         );

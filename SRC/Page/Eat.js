@@ -20,7 +20,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import DrawerComponent from "../Component/DrawerComponent";
 import Header from './Header'
 import { connect } from "react-redux";
-import { fetchProducts, setItem, setRemoveItem,editItem,setSearchItem,setType} from "../Services/ServicesData/action";
+import { fetchProducts, setItem,getDone,setRemoveItem,editItem,setSearchItem,setType} from "../Services/ServicesData/action";
 
 
 let dim = Dimensions.get("window");
@@ -106,6 +106,13 @@ const inBackgroundcolor = navigation.getParam("backgroundColor", "gold")
 };
 
   }
+
+  
+completeTask = (id) => {
+  this.props.getDone(id)
+
+};
+
   render() {
     const { navigation} = this.props
     const name = navigation.getParam("name","UNDEFINED")
@@ -122,22 +129,31 @@ const inBackgroundcolor = navigation.getParam("backgroundColor", "gold")
                             renderItem={({item,})=>
         
                             <View style={styles.boxGreen}>
-                                <View style={styles.boxtext}>
-                                    <Text style={styles.textoption}>{item.option}</Text>
+                                <View style={styles.boxText}>
+                                
+                                    <Text style={styles.textOption}>{item.option}</Text>
+                                   
+                          
                                     <Text style={styles.text}>{item.type}</Text>
                                     <View style={styles.date}>
-                                    <Text style={styles.textdate}>{item.date}</Text>
-                                    <Text style={styles.texttime}>{item.time}</Text>
-                                    </View>
-                                </View>
+                                    <Text style={styles.textDate}>{item.date}</Text>
+                                    <Text style={styles.textTime}>{item.time}</Text>
+                                    
+                                
                                 <View style={styles.button}>
                                 <TouchableOpacity onPress={() => this.props.setRemoveItem(item.id)}
                                 style={styles.delete}>
-                                        <Text style={styles.textdelete}>Delete</Text>
+                                        <Icon name="trash" color="white" size={20}/>
                                     </TouchableOpacity>
                                     <TouchableOpacity  style={styles.delete} onPress={ this.setTextEdit.bind(this,item.type , item)}>
-                                        <Text style={styles.textedite}>Edite</Text>
+                                    <Icon name="edit" color="white" size={20}/>
                                     </TouchableOpacity>
+                                    <TouchableOpacity  onPress={this.completeTask.bind(this, item.id)}
+                                style={styles.delete}>
+                                        <Icon name="check" color='white' size={20}/> 
+                                    </TouchableOpacity>
+                                    </View>
+                                    </View>
                                     </View>
                             </View>
 
@@ -219,7 +235,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     
   },
-  textoption2: {
+  textOption2: {
     color: "white",
    
     fontSize: 22
@@ -322,7 +338,7 @@ const styles = StyleSheet.create({
        paddingVertical:5,
        alignSelf:'flex-end',
    },
-   textoption:{
+   textOption:{
        color:'white',
        fontWeight:'bold',
        fontSize:22,
@@ -330,8 +346,8 @@ const styles = StyleSheet.create({
        
    },
    button:{
-       flexDirection:'column',
-      
+       flexDirection:'row',
+      marginLeft:30
    },
 
    boxGreen:{
@@ -343,31 +359,30 @@ const styles = StyleSheet.create({
        paddingVertical:5,
        justifyContent:'space-between',
        marginTop:10,
-       alignItems: 'center',
+       
        paddingHorizontal: 10,
        elevation:10,
        borderRadius:5
    },
-   boxtext:{
+   boxText:{
        width:200,
        
      
    },
    delete:{
-       width:50,
-       height:50,
+       width:35,
+       height:35,
        backgroundColor:'pink',
-       marginLeft:30,
        justifyContent:'center',
        alignItems:'center',
        margin:5,
        borderRadius:7
    },
-   textdelete:{
+   textDelete:{
        color:'red',
        fontWeight:'500'
    },
-   textedite:{
+   textEdite:{
        color:'#348C16',
        fontWeight:'500'
    },
@@ -375,15 +390,21 @@ const styles = StyleSheet.create({
        flexDirection:'row',
        
    },
-   textdate:{
+   textDate:{
        margin:10,
        color:'white'
    },
-   texttime:{
+   optionIcon:{
+    flexDirection:'row'
+   },
+   textTime:{
        margin:10,
        color:'white'
    },
-   icon:{marginLeft:15}
+   icon:{
+     marginLeft:15
+    },
+
 });
 
 const mapStateToProps = state => {
@@ -392,6 +413,6 @@ const mapStateToProps = state => {
     selectedItem: state.userReducer.selectedItem,
   };
 };
-export default connect(mapStateToProps,{fetchProducts,setItem,setType,setSearchItem,setRemoveItem,editItem})(Eat);
+export default connect(mapStateToProps,{fetchProducts,setItem,setType,setSearchItem,setRemoveItem,getDone,editItem})(Eat);
 
  

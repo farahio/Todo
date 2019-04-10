@@ -1366,16 +1366,12 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _App = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "./App"));
 
-  var _Eat = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "./SRC/Page/Eat"));
-
-  var _Loading = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "./SRC/Page/Loading"));
-
-  var _app = _$$_REQUIRE(_dependencyMap[5], "./app.json");
+  var _app = _$$_REQUIRE(_dependencyMap[3], "./app.json");
 
   _reactNative.AppRegistry.registerComponent(_app.name, function () {
     return _App.default;
   });
-},0,[1,2,560,720,795,802],"index.js");
+},0,[1,2,560,801],"index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -88845,9 +88841,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _reduxThunk = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[15], "redux-thunk"));
 
-  var _Loading = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[16], "./SRC/Page/Loading"));
-
-  var _jsxFileName = "D:\\write-me\\tasks\\Todo\\node_modules\\react-native\\scripts\\App.js";
+  var _jsxFileName = "d:\\write-me\\tasks\\Todo\\App.js";
   var _components = {
     App: {
       displayName: "App"
@@ -88855,7 +88849,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index.default)({
-    filename: "D:\\write-me\\tasks\\Todo\\node_modules\\react-native\\scripts\\App.js",
+    filename: "d:\\write-me\\tasks\\Todo\\App.js",
     components: _components,
     locals: [module],
     imports: [_react.default]
@@ -88882,16 +88876,15 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       key: "render",
       value: function render() {
         return _react.default.createElement(_reactRedux.Provider, {
-          style: styles.container,
           store: store,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 18
+            lineNumber: 16
           }
-        }, _react.default.createElement(_Loading.default, {
+        }, _react.default.createElement(_Theme.default, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 19
+            lineNumber: 17
           }
         }));
       }
@@ -88901,14 +88894,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default2 = App;
   exports.default = _default2;
-
-  var styles = _reactNative.StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: 'white'
-    }
-  });
-},560,[1,561,19,20,27,30,33,47,200,2,562,565,591,794,798,801,795],"App.js");
+},560,[1,561,19,20,27,30,33,47,200,2,562,565,591,793,797,800],"App.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   function _interopRequireWildcard(obj) {
     if (obj && obj.__esModule) {
@@ -91262,7 +91248,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   })(AppNavigator);
 
   exports.default = _default2;
-},591,[1,561,19,20,27,30,33,47,200,2,592,720,721,565,780,788,772,793],"SRC\\Page\\Home.js");
+},591,[1,561,19,20,27,30,33,47,200,2,592,720,721,565,780,787,772,792],"SRC\\Page\\Home.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = {
     get createAppContainer() {
@@ -111027,7 +111013,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _action = _$$_REQUIRE(_dependencyMap[15], "../Services/ServicesData/action");
 
-  var _jsxFileName = "d:\\write-me\\tasks\\Todo\\SRC\\Page\\Eat.js";
+  var _jsxFileName = "D:\\write-me\\tasks\\Todo\\node_modules\\react-native\\scripts\\SRC\\Page\\Eat.js";
   var _components = {
     Eat: {
       displayName: "Eat"
@@ -111035,7 +111021,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index.default)({
-    filename: "d:\\write-me\\tasks\\Todo\\SRC\\Page\\Eat.js",
+    filename: "D:\\write-me\\tasks\\Todo\\node_modules\\react-native\\scripts\\SRC\\Page\\Eat.js",
     components: _components,
     locals: [module],
     imports: [_react.default]
@@ -111068,6 +111054,10 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         _this.setState({
           select: true
         });
+      };
+
+      _this.completeTask = function (id) {
+        _this.props.getDone(id);
       };
 
       _this.state = {
@@ -111133,19 +111123,19 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           style: styles.container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 114
+            lineNumber: 121
           }
         }, _react.default.createElement(_reactNative.View, {
           style: styles.bodyStyle,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 116
+            lineNumber: 123
           }
         }, _react.default.createElement(_reactNative.View, {
           style: styles.Listener,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 117
+            lineNumber: 124
           }
         }, _react.default.createElement(_reactNative.FlatList, {
           data: this.props.selectedItem,
@@ -111158,49 +111148,49 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               style: styles.boxGreen,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 124
+                lineNumber: 131
               }
             }, _react.default.createElement(_reactNative.View, {
-              style: styles.boxtext,
+              style: styles.boxText,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 125
+                lineNumber: 132
               }
             }, _react.default.createElement(_reactNative.Text, {
-              style: styles.textoption,
+              style: styles.textOption,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 126
+                lineNumber: 134
               }
             }, item.option), _react.default.createElement(_reactNative.Text, {
               style: styles.text,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 127
+                lineNumber: 137
               }
             }, item.type), _react.default.createElement(_reactNative.View, {
               style: styles.date,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 128
+                lineNumber: 138
               }
             }, _react.default.createElement(_reactNative.Text, {
-              style: styles.textdate,
+              style: styles.textDate,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 129
+                lineNumber: 139
               }
             }, item.date), _react.default.createElement(_reactNative.Text, {
-              style: styles.texttime,
+              style: styles.textTime,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 130
+                lineNumber: 140
               }
-            }, item.time))), _react.default.createElement(_reactNative.View, {
+            }, item.time), _react.default.createElement(_reactNative.View, {
               style: styles.button,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 133
+                lineNumber: 143
               }
             }, _react.default.createElement(_reactNative.TouchableOpacity, {
               onPress: function onPress() {
@@ -111209,38 +111199,57 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               style: styles.delete,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 134
+                lineNumber: 144
               }
-            }, _react.default.createElement(_reactNative.Text, {
-              style: styles.textdelete,
+            }, _react.default.createElement(_FontAwesome.default, {
+              name: "trash",
+              color: "white",
+              size: 20,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 136
+                lineNumber: 146
               }
-            }, "Delete")), _react.default.createElement(_reactNative.TouchableOpacity, {
+            })), _react.default.createElement(_reactNative.TouchableOpacity, {
               style: styles.delete,
               onPress: _this2.setTextEdit.bind(_this2, item.type, item),
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 138
+                lineNumber: 148
               }
-            }, _react.default.createElement(_reactNative.Text, {
-              style: styles.textedite,
+            }, _react.default.createElement(_FontAwesome.default, {
+              name: "edit",
+              color: "white",
+              size: 20,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 139
+                lineNumber: 149
               }
-            }, "Edite"))));
+            })), _react.default.createElement(_reactNative.TouchableOpacity, {
+              onPress: _this2.completeTask.bind(_this2, item.id),
+              style: styles.delete,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 151
+              }
+            }, _react.default.createElement(_FontAwesome.default, {
+              name: "check",
+              color: "white",
+              size: 20,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 153
+              }
+            }))))));
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 118
+            lineNumber: 125
           }
         })), _react.default.createElement(_reactNative.View, {
           style: styles.Changer,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 148
+            lineNumber: 164
           }
         }, _react.default.createElement(_reactNative.TextInput, {
           placeholder: "Type here...",
@@ -111249,7 +111258,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           onChangeText: this.setText.bind(this),
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 149
+            lineNumber: 165
           }
         }), _react.default.createElement(_reactNative.TouchableOpacity, {
           onPress: function onPress() {
@@ -111272,13 +111281,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           style: styles.bottonStyle,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 156
+            lineNumber: 172
           }
         }, _react.default.createElement(_reactNative.Text, {
           style: styles.fontStyle,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 169
+            lineNumber: 185
           }
         }, "Done")))));
       }
@@ -111346,7 +111355,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       width: 350,
       flexDirection: "row"
     },
-    textoption2: {
+    textOption2: {
       color: "white",
       fontSize: 22
     },
@@ -111441,14 +111450,15 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       paddingVertical: 5,
       alignSelf: 'flex-end'
     },
-    textoption: {
+    textOption: {
       color: 'white',
       fontWeight: 'bold',
       fontSize: 22,
       paddingVertical: 5
     },
     button: {
-      flexDirection: 'column'
+      flexDirection: 'row',
+      marginLeft: 30
     },
     boxGreen: {
       flexDirection: 'row',
@@ -111459,40 +111469,41 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       paddingVertical: 5,
       justifyContent: 'space-between',
       marginTop: 10,
-      alignItems: 'center',
       paddingHorizontal: 10,
       elevation: 10,
       borderRadius: 5
     },
-    boxtext: {
+    boxText: {
       width: 200
     },
     delete: {
-      width: 50,
-      height: 50,
+      width: 35,
+      height: 35,
       backgroundColor: 'pink',
-      marginLeft: 30,
       justifyContent: 'center',
       alignItems: 'center',
       margin: 5,
       borderRadius: 7
     },
-    textdelete: {
+    textDelete: {
       color: 'red',
       fontWeight: '500'
     },
-    textedite: {
+    textEdite: {
       color: '#348C16',
       fontWeight: '500'
     },
     date: {
       flexDirection: 'row'
     },
-    textdate: {
+    textDate: {
       margin: 10,
       color: 'white'
     },
-    texttime: {
+    optionIcon: {
+      flexDirection: 'row'
+    },
+    textTime: {
       margin: 10,
       color: 'white'
     },
@@ -111514,11 +111525,12 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     setType: _action.setType,
     setSearchItem: _action.setSearchItem,
     setRemoveItem: _action.setRemoveItem,
+    getDone: _action.getDone,
     editItem: _action.editItem
   })(Eat);
 
   exports.default = _default2;
-},720,[1,561,19,27,30,20,33,47,200,2,592,721,771,787,565,780],"SRC\\Page\\Eat.js");
+},720,[1,561,19,27,30,20,33,47,200,2,592,721,771,786,565,780],"SRC\\Page\\Eat.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -114167,7 +114179,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _Favorite = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[15], "../Page/Favorite"));
 
-  var _jsxFileName = "d:\\write-me\\tasks\\Todo\\SRC\\Component\\DrawerComponent.js";
+  var _jsxFileName = "D:\\write-me\\tasks\\Todo\\node_modules\\react-native\\scripts\\SRC\\Component\\DrawerComponent.js";
   var _components = {
     DrawerComponent: {
       displayName: "DrawerComponent"
@@ -114175,7 +114187,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index.default)({
-    filename: "d:\\write-me\\tasks\\Todo\\SRC\\Component\\DrawerComponent.js",
+    filename: "D:\\write-me\\tasks\\Todo\\node_modules\\react-native\\scripts\\SRC\\Component\\DrawerComponent.js",
     components: _components,
     locals: [module],
     imports: [_react.default]
@@ -114297,8 +114309,10 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             fileName: _jsxFileName,
             lineNumber: 67
           }
-        }, _react.default.createElement(_reactNative.Image, {
-          source: _$$_REQUIRE(_dependencyMap[16], "../assets/Photo/hearts.png"),
+        }, _react.default.createElement(_FontAwesome.default, {
+          name: "check",
+          color: "green",
+          size: 24,
           style: styles.favorite,
           __source: {
             fileName: _jsxFileName,
@@ -114308,9 +114322,9 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           style: styles.textfavorite,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 72
+            lineNumber: 71
           }
-        }, "Favorite"))), _react.default.createElement(_reactNative.TouchableOpacity, {
+        }, "Done"))), _react.default.createElement(_reactNative.TouchableOpacity, {
           onPress: function onPress() {
             _this.props.navigation.navigate('Setting');
 
@@ -114319,26 +114333,26 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           style: styles.setting,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 75
+            lineNumber: 74
           }
         }, _react.default.createElement(_reactNative.View, {
           style: styles.favoriteview,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 84
+            lineNumber: 83
           }
         }, _react.default.createElement(_reactNative.Image, {
-          source: _$$_REQUIRE(_dependencyMap[17], "../assets/Photo/settings-gears.png"),
+          source: _$$_REQUIRE(_dependencyMap[16], "../assets/Photo/settings-gears.png"),
           style: styles.favorite,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 85
+            lineNumber: 84
           }
         }), _react.default.createElement(_reactNative.Text, {
           style: styles.textfavorite,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 89
+            lineNumber: 88
           }
         }, "Setting")))));
       }
@@ -114427,7 +114441,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   })(DrawerComponent);
 
   exports.default = _default2;
-},771,[1,561,19,20,27,30,33,47,200,2,772,646,721,780,565,782,785,786],"SRC\\Component\\DrawerComponent.js");
+},771,[1,561,19,20,27,30,33,47,200,2,772,646,721,780,565,782,785],"SRC\\Component\\DrawerComponent.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -114552,7 +114566,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.editItem = exports.fetchProducts = exports.setType = exports.setRemoveItem = exports.setItem = exports.setSearchItem = void 0;
+  exports.editItem = exports.fetchProducts = exports.setType = exports.setRemoveItem = exports.setItem = exports.getDone = exports.getDoneData = exports.changeStatus = exports.setSearchItem = void 0;
 
   var _type = _$$_REQUIRE(_dependencyMap[0], "./type");
 
@@ -114610,6 +114624,48 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   exports.setSearchItem = setSearchItem;
 
+  var changeStatus = function changeStatus(id) {
+    return {
+      type: _type.CHANGE_STATUS,
+      payload: id
+    };
+  };
+
+  exports.changeStatus = changeStatus;
+
+  var getDoneData = function getDoneData(data) {
+    return {
+      type: _type.GET_DONE_DATA,
+      payload: data
+    };
+  };
+
+  exports.getDoneData = getDoneData;
+
+  var getDone = function getDone(id) {
+    return function (dispatch) {
+      var data = {
+        "isComplete": true
+      };
+      var trueComplete = true;
+      var url = "http://10.0.2.2:3000/tasks/";
+      fetch("" + url + id + "/?isComplete=" + trueComplete, {
+        method: 'PATCH',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      }).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        dispatch(changeStatus(id));
+      });
+    };
+  };
+
+  exports.getDone = getDone;
+
   var editAction = function editAction(id, type, item) {
     return {
       type: _type.EDITE_ITEM,
@@ -114626,7 +114682,8 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         "option": type,
         "type": text,
         "date": now.toLocaleDateString(),
-        "time": now.toLocaleTimeString()
+        "time": now.toLocaleTimeString(),
+        "iscomplete": true
       };
       fetch("http://10.0.2.2:3000/tasks", {
         method: 'POST',
@@ -114675,6 +114732,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         return data.json();
       }).then(function (data) {
         dispatch(fetchProductsSuccess(data));
+        dispatch(getDoneData(data));
       }).catch(function (error) {
         return dispatch(fetchProductsFailure(error));
       });
@@ -114710,7 +114768,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.EDITE_ITEM = exports.SEARCH_ITEM = exports.REMOVE_ITEM = exports.FETCH_ITEM = exports.FETCH_TYPE = exports.FETCH_PRODUCTS_FAILURE = exports.FETCH_PRODUCTS_SUCCESS = exports.FETCH_PRODUCTS_BEGIN = void 0;
+  exports.CHANGE_STATUS = exports.GET_DONE_DATA = exports.EDITE_ITEM = exports.SEARCH_ITEM = exports.REMOVE_ITEM = exports.FETCH_ITEM = exports.FETCH_TYPE = exports.FETCH_PRODUCTS_FAILURE = exports.FETCH_PRODUCTS_SUCCESS = exports.FETCH_PRODUCTS_BEGIN = void 0;
   var FETCH_PRODUCTS_BEGIN = 'FETCH_PRODUCTS_BEGIN';
   exports.FETCH_PRODUCTS_BEGIN = FETCH_PRODUCTS_BEGIN;
   var FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
@@ -114727,6 +114785,10 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.SEARCH_ITEM = SEARCH_ITEM;
   var EDITE_ITEM = 'EDIT_ITEM';
   exports.EDITE_ITEM = EDITE_ITEM;
+  var GET_DONE_DATA = 'GET_DONE_DATA';
+  exports.GET_DONE_DATA = GET_DONE_DATA;
+  var CHANGE_STATUS = 'CHANGE_STATUS';
+  exports.CHANGE_STATUS = CHANGE_STATUS;
 },781,[],"SRC\\Services\\ServicesData\\type.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
@@ -114754,12 +114816,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _reactNative = _$$_REQUIRE(_dependencyMap[9], "react-native");
 
-  var _Feather = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[10], "react-native-vector-icons/Feather"));
+  var _reactRedux = _$$_REQUIRE(_dependencyMap[10], "react-redux");
 
-  var _class,
-      _temp,
-      _jsxFileName = "D:\\write-me\\tasks\\Todo\\node_modules\\react-native\\scripts\\SRC\\Page\\Favorite.js";
+  var _Feather = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[11], "react-native-vector-icons/Feather"));
 
+  var _action = _$$_REQUIRE(_dependencyMap[12], "../Services/ServicesData/action");
+
+  var _jsxFileName = "D:\\write-me\\tasks\\Todo\\node_modules\\react-native\\scripts\\SRC\\Page\\Favorite.js";
   var _components = {
     Favorite: {
       displayName: "Favorite"
@@ -114781,55 +114844,329 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var dim = _reactNative.Dimensions.get('window');
 
-  var Favorite = _wrapComponent("Favorite")((_temp = _class = function (_Component) {
+  var Favorite = function (_Component) {
     (0, _inherits2.default)(Favorite, _Component);
 
-    function Favorite() {
+    function Favorite(props) {
+      var _this;
+
       (0, _classCallCheck2.default)(this, Favorite);
-      return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Favorite).apply(this, arguments));
+      _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Favorite).call(this, props));
+      _this.state = {
+        text: "",
+        select: false,
+        selectItem: 0,
+        item: null,
+        edit: false
+      };
+      return _this;
     }
 
     (0, _createClass2.default)(Favorite, [{
       key: "render",
       value: function render() {
+        var _this2 = this;
+
+        var data = this.props.doneItem;
+        var theme = this.context;
         return _react.default.createElement(_reactNative.View, {
-          style: styles.container,
+          style: [styles.container, {
+            backgroundColor: theme.backgroundColor
+          }],
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 26
+            lineNumber: 56
           }
-        }, _react.default.createElement(_reactNative.Text, {
+        }, _react.default.createElement(_reactNative.FlatList, {
+          data: data,
+          keyExtractor: function keyExtractor(item) {
+            return item.id.toString();
+          },
+          renderItem: function renderItem(_ref) {
+            var item = _ref.item;
+            return _react.default.createElement(_reactNative.View, {
+              style: styles.boxGreen,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 62
+              }
+            }, _react.default.createElement(_reactNative.View, {
+              style: styles.boxText,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 63
+              }
+            }, _react.default.createElement(_reactNative.Text, {
+              style: styles.textOption,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 65
+              }
+            }, item.option), _react.default.createElement(_reactNative.Text, {
+              style: styles.text,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 68
+              }
+            }, item.type), _react.default.createElement(_reactNative.View, {
+              style: styles.date,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 69
+              }
+            }, _react.default.createElement(_reactNative.Text, {
+              style: styles.textDate,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 70
+              }
+            }, item.date), _react.default.createElement(_reactNative.Text, {
+              style: styles.textTime,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 71
+              }
+            }, item.time), _react.default.createElement(_reactNative.View, {
+              style: styles.button,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 74
+              }
+            }, _react.default.createElement(_reactNative.TouchableOpacity, {
+              onPress: function onPress() {
+                return _this2.props.setRemoveItem(item.id);
+              },
+              style: styles.delete,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 75
+              }
+            }, _react.default.createElement(_Feather.default, {
+              name: "trash",
+              color: "white",
+              size: 20,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 77
+              }
+            }))))));
+          },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 27
+            lineNumber: 57
           }
-        }, "hello"));
+        }));
       }
     }]);
     return Favorite;
-  }(_react.Component), _class.navigationOptions = function (_ref) {
-    var navigation = _ref.navigation;
+  }(_react.Component);
+
+  Favorite.navigationOptions = function () {
     return {
+      title: "Done",
       headerStyle: {
         backgroundColor: '#ffffe6'
       },
-      headerTintColor: '#999999',
+      headerTintColor: '#18751D',
       headerTitleStyle: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: "#53D55B"
       }
     };
-  }, _temp));
+  };
 
-  var _default2 = Favorite;
-  exports.default = _default2;
+  Favorite = _wrapComponent("Favorite")(Favorite);
 
   var styles = _reactNative.StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: 'red'
+      backgroundColor: '#F1F5E0',
+      justifyContent: 'center'
+    },
+    drawerBotton: {
+      marginLeft: 15
+    },
+    drawerBottonRight: {
+      marginRight: 15
+    },
+    Listener: {
+      flex: 8,
+      backgroundColor: "#e7e7e7"
+    },
+    Changer: {
+      width: 350,
+      flexDirection: "row"
+    },
+    textOption2: {
+      color: "white",
+      fontSize: 22
+    },
+    inputStyle: {
+      flex: 8,
+      backgroundColor: 'white',
+      borderWidth: 2,
+      borderColor: "#E1E2E7",
+      borderBottomColor: "#F10C39",
+      marginBottom: 30,
+      marginVertical: 10,
+      elevation: 15
+    },
+    bottonStyle: {
+      flex: 2,
+      marginVertical: 20,
+      justifyContent: "center",
+      alignItems: "center",
+      elevation: 15,
+      marginHorizontal: 5
+    },
+    fontStyle: {
+      color: "#F10C39",
+      fontWeight: "200",
+      fontSize: 14,
+      marginBottom: 20
+    },
+    fontStyle2: {
+      color: "#98042D",
+      fontWeight: "200",
+      fontSize: 20
+    },
+    flatStyle: {
+      marginTop: 25
+    },
+    itemStyle: {
+      width: 400,
+      flexDirection: "row",
+      flex: 1,
+      borderBottomColor: "#98042D",
+      marginStart: 15,
+      justifyContent: "flex-start",
+      marginTop: 10
+    },
+    textInput: {
+      width: 350,
+      height: 50,
+      backgroundColor: "white",
+      borderRadius: 5
+    },
+    iconBack: {
+      marginLeft: 10
+    },
+    textInput2: {
+      height: 50,
+      marginRight: 40,
+      borderRadius: 5
+    },
+    box: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      flexDirection: 'row'
+    },
+    boxOn: {
+      width: 350,
+      height: 300,
+      backgroundColor: '#256a75',
+      borderRadius: 10,
+      margin: 15,
+      alignItems: 'center',
+      flexDirection: 'row',
+      paddingHorizontal: 10,
+      elevation: 15
+    },
+    textMain: {
+      color: 'white',
+      fontSize: 18,
+      flex: 1,
+      textAlign: 'left'
+    },
+    flatImage: {
+      width: 15,
+      height: 15,
+      position: 'relative',
+      paddingRight: 20
+    },
+    text: {
+      color: 'white',
+      fontWeight: 'bold',
+      fontSize: 18,
+      paddingVertical: 5,
+      alignSelf: 'flex-end'
+    },
+    textOption: {
+      color: 'white',
+      fontWeight: 'bold',
+      fontSize: 22,
+      paddingVertical: 5
+    },
+    button: {
+      flexDirection: 'row',
+      marginLeft: 60
+    },
+    boxGreen: {
+      flexDirection: 'row',
+      borderColor: '#123738',
+      borderWidth: 1,
+      backgroundColor: '#174849',
+      flex: 5,
+      paddingVertical: 5,
+      justifyContent: 'space-between',
+      marginTop: 10,
+      paddingHorizontal: 10,
+      elevation: 10,
+      borderRadius: 5
+    },
+    boxText: {
+      width: 200
+    },
+    delete: {
+      width: 50,
+      height: 50,
+      backgroundColor: 'pink',
+      justifyContent: 'center',
+      alignItems: 'center',
+      margin: 5,
+      borderRadius: 7
+    },
+    textDelete: {
+      color: 'red',
+      fontWeight: '500'
+    },
+    textEdite: {
+      color: '#348C16',
+      fontWeight: '500'
+    },
+    date: {
+      flexDirection: 'row'
+    },
+    textDate: {
+      margin: 10,
+      color: 'white'
+    },
+    optionIcon: {
+      flexDirection: 'row'
+    },
+    textTime: {
+      margin: 10,
+      color: 'white'
+    },
+    icon: {
+      marginLeft: 15
     }
   });
-},782,[1,561,19,20,27,30,33,47,200,2,783],"SRC\\Page\\Favorite.js");
+
+  var mapStateToProps = function mapStateToProps(state) {
+    return {
+      doneItem: state.userReducer.doneItem
+    };
+  };
+
+  var _default2 = (0, _reactRedux.connect)(mapStateToProps, {
+    setRemoveItem: _action.setRemoveItem,
+    editItem: _action.editItem
+  })(Favorite);
+
+  exports.default = _default2;
+},782,[1,561,19,20,27,30,33,47,200,2,565,783,780],"SRC\\Page\\Favorite.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -115130,18 +115467,6 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   module.exports = _$$_REQUIRE(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
     "__packager_asset": true,
     "httpServerLocation": "/assets/SRC/assets/Photo",
-    "width": 512,
-    "height": 512,
-    "scales": [1],
-    "hash": "c4ba02ac90f74c30a997358e0e967e89",
-    "name": "hearts",
-    "type": "png"
-  });
-},785,[195],"SRC\\assets\\Photo\\hearts.png");
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  module.exports = _$$_REQUIRE(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
-    "__packager_asset": true,
-    "httpServerLocation": "/assets/SRC/assets/Photo",
     "width": 23,
     "height": 23,
     "scales": [1],
@@ -115149,7 +115474,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     "name": "settings-gears",
     "type": "png"
   });
-},786,[195],"SRC\\assets\\Photo\\settings-gears.png");
+},785,[195],"SRC\\assets\\Photo\\settings-gears.png");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -115615,7 +115940,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   })((0, _reactNavigation.withNavigation)(Header));
 
   exports.default = _default2;
-},787,[1,561,19,20,27,30,33,47,200,2,592,721,771,565,780],"SRC\\Page\\Header.js");
+},786,[1,561,19,20,27,30,33,47,200,2,592,721,771,565,780],"SRC\\Page\\Header.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -115705,7 +116030,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
   var _default = rootstack;
   exports.default = _default;
-},788,[1,592,721,771,565,720,782,789],"SRC\\route\\index.js");
+},787,[1,592,721,771,565,720,782,788],"SRC\\route\\index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -115722,7 +116047,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/possibleConstructorReturn"));
 
-  var _getPrototypeOf3 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/getPrototypeOf"));
+  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/getPrototypeOf"));
 
   var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "@babel/runtime/helpers/inherits"));
 
@@ -115758,26 +116083,50 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     };
   }
 
+  _reactNative.UIManager.setLayoutAnimationEnabledExperimental && _reactNative.UIManager.setLayoutAnimationEnabledExperimental(true);
+
   var Setting = function (_Component) {
     (0, _inherits2.default)(Setting, _Component);
 
-    function Setting() {
-      var _getPrototypeOf2;
-
+    function Setting(props) {
       var _this;
 
       (0, _classCallCheck2.default)(this, Setting);
-
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-
-      _this = (0, _possibleConstructorReturn2.default)(this, (_getPrototypeOf2 = (0, _getPrototypeOf3.default)(Setting)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-      _this.onPressChangeTheme = function () {
-        _this.props.themeChanger();
+      _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Setting).call(this, props));
+      _this.animate = {
+        duration: 1000,
+        create: {
+          property: 'scaleXY',
+          type: 'spring',
+          duration: 1000,
+          springDamping: 0.2
+        },
+        update: {
+          property: 'scaleXY',
+          type: 'easeOut',
+          duration: 400,
+          springDamping: 0.4,
+          initialVelocity: .1
+        },
+        delete: {
+          property: 'scaleXY',
+          type: 'spring',
+          duration: 1000,
+          springDamping: 0.5
+        }
       };
 
+      _this.toggleTheme = function () {
+        _this.props.themeChanger();
+
+        _this.setState({
+          button: !_this.state.button
+        });
+      };
+
+      _this.state = {
+        button: new _reactNative.Animated.Value(true)
+      };
       return _this;
     }
 
@@ -115786,79 +116135,46 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       value: function render() {
         var theme = this.context.theme;
         return _react.default.createElement(_reactNative.View, {
-          style: [styles.container, {
+          style: [styles.setting, {
             backgroundColor: theme.backgroundColor
           }],
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 25
+            lineNumber: 75
+          }
+        }, _react.default.createElement(_reactNative.Text, {
+          style: {
+            color: "gold",
+            fontWeight: '600'
+          },
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 76
+          }
+        }, "Theme"), _react.default.createElement(_reactNative.View, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 77
           }
         }, _react.default.createElement(_reactNative.TouchableOpacity, {
-          style: [styles.buttonStyle, {
-            backgroundColor: theme.backgroundColor
-          }],
-          onPress: this.onPressChangeTheme.bind(this),
+          onPress: this.toggleTheme.bind(this),
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 27
+            lineNumber: 78
           }
-        }, _react.default.createElement(_reactNative.Text, {
-          style: [styles.textStyle, {
-            color: theme.fontColor
-          }],
+        }, _react.default.createElement(_reactNative.View, {
+          style: this.state.button ? styles.button : styles.buttonDark,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 30
+            lineNumber: 79
           }
-        }, "Theme")), _react.default.createElement(_reactNative.TouchableOpacity, {
-          style: [styles.buttonStyle, {
-            backgroundColor: theme.itemColor
-          }],
+        }, _react.default.createElement(_reactNative.View, {
+          style: [styles.buttonWrapper],
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 33
+            lineNumber: 80
           }
-        }, _react.default.createElement(_reactNative.Text, {
-          style: [styles.textStyle, {
-            color: theme.fontColor
-          }],
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 35
-          }
-        }, "Language")), _react.default.createElement(_reactNative.TouchableOpacity, {
-          style: [styles.buttonStyle, {
-            backgroundColor: theme.itemColor
-          }],
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 39
-          }
-        }, _react.default.createElement(_reactNative.Text, {
-          style: [styles.textStyle, {
-            color: theme.fontColor
-          }],
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 41
-          }
-        }, "About Us")), _react.default.createElement(_reactNative.TouchableOpacity, {
-          style: [styles.buttonStyle, {
-            backgroundColor: theme.itemColor
-          }],
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 45
-          }
-        }, _react.default.createElement(_reactNative.Text, {
-          style: [styles.textStyle, {
-            color: theme.fontColor
-          }],
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 47
-          }
-        }, "Help")));
+        })))));
       }
     }]);
     return Setting;
@@ -115878,9 +116194,12 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   Setting.contextType = _ThemeContext.ThemeContext;
 
   var styles = _reactNative.StyleSheet.create({
-    container: {
+    setting: {
       flex: 1,
-      alignItems: 'center'
+      paddingHorizontal: 20,
+      paddingTop: 20,
+      justifyContent: 'space-between',
+      flexDirection: 'row'
     },
     backButton: {
       marginLeft: 12,
@@ -115888,33 +116207,51 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       width: 20
     },
     backImage: {
-      width: 20,
-      height: 20
-    },
-    buttonStyle: {
-      borderRadius: 7,
-      height: 65,
-      width: 230,
-      margin: 20,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#F9F9F8',
-      borderWidth: 4,
-      borderColor: '#231F66'
+      width: 30,
+      height: 30
     },
     textStyle: {
       fontWeight: '400',
       color: '#606060',
       fontSize: 18
+    },
+    button: {
+      backgroundColor: '#b7b7b7',
+      width: 100,
+      height: 40,
+      justifyContent: 'center',
+      borderRadius: 50,
+      alignItems: 'flex-end'
+    },
+    buttonDark: {
+      backgroundColor: '#afafaf',
+      width: 100,
+      height: 40,
+      justifyContent: 'center',
+      borderRadius: 50,
+      alignItems: 'flex-start'
+    },
+    buttonWrapper: {
+      width: 20,
+      height: 20,
+      backgroundColor: '#8979f3',
+      borderRadius: 50,
+      marginHorizontal: 5
     }
   });
 
-  var _default2 = (0, _reactRedux.connect)(null, {
+  var mapStateToProps = function mapStateToProps(state) {
+    return {
+      theme: state.changeReducer
+    };
+  };
+
+  var _default2 = (0, _reactRedux.connect)(mapStateToProps, {
     themeChanger: _action.themeChanger
   })(Setting);
 
   exports.default = _default2;
-},789,[1,561,19,20,27,30,33,47,200,2,790,565,791],"SRC\\Page\\Setting.js");
+},788,[1,561,19,20,27,30,33,47,200,2,789,565,790],"SRC\\Page\\Setting.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -115927,21 +116264,23 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var themes = {
     light: {
-      backgroundColor: 'blue',
+      backgroundColor: '#42f',
+      borderColor: '#77849b',
+      fontColor: 'red',
+      borderWidth: 1,
+      placeholderTextColor: '#dedede',
+      burgerMenu: '#fff',
+      saveButton: '#424a57',
+      id: "1"
+    },
+    dark: {
+      backgroundColor: '#2f6',
       fontColor: '#262626',
       greenFont: 'red',
       placeholderTextColor: '#474747',
       burgerMenu: '#282c34',
-      saveButton: '#8979f3'
-    },
-    dark: {
-      backgroundColor: 'black',
-      borderColor: '#77849b',
-      fontColor: '#dedede',
-      borderWidth: 1,
-      placeholderTextColor: '#dedede',
-      burgerMenu: '#fff',
-      saveButton: '#424a57'
+      saveButton: '#8979f3',
+      id: "2"
     }
   };
   exports.themes = themes;
@@ -115951,7 +116290,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   exports.ThemeContext = ThemeContext;
-},790,[1,47],"SRC\\Component\\ThemeContext.js");
+},789,[1,47],"SRC\\Component\\ThemeContext.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -115960,18 +116299,14 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _type = _$$_REQUIRE(_dependencyMap[0], "./type");
 
-  var themeChangerAction = function themeChangerAction() {
+  var themeChanger = function themeChanger() {
     return {
       type: _type.CHANGE_THEME
     };
   };
 
-  var themeChanger = function themeChanger() {
-    return themeChangerAction();
-  };
-
   exports.themeChanger = themeChanger;
-},791,[792],"SRC\\Services\\ServicesTheme\\action.js");
+},790,[791],"SRC\\Services\\ServicesTheme\\action.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -115979,7 +116314,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.CHANGE_THEME = void 0;
   var CHANGE_THEME = 'CHANGE_THEME';
   exports.CHANGE_THEME = CHANGE_THEME;
-},792,[],"SRC\\Services\\ServicesTheme\\type.js");
+},791,[],"SRC\\Services\\ServicesTheme\\type.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = _$$_REQUIRE(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
     "__packager_asset": true,
@@ -115991,7 +116326,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     "name": "logo8",
     "type": "png"
   });
-},793,[195],"SRC\\assets\\Photo\\logo8.png");
+},792,[195],"SRC\\assets\\Photo\\logo8.png");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -116022,7 +116357,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _Loading = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[11], "./Loading"));
 
-  var _jsxFileName = "D:\\write-me\\tasks\\Todo\\node_modules\\react-native\\scripts\\SRC\\Page\\Theme.js";
+  var _jsxFileName = "d:\\write-me\\tasks\\Todo\\SRC\\Page\\Theme.js";
   var _components = {
     Theme: {
       displayName: "Theme"
@@ -116030,7 +116365,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index.default)({
-    filename: "D:\\write-me\\tasks\\Todo\\node_modules\\react-native\\scripts\\SRC\\Page\\Theme.js",
+    filename: "d:\\write-me\\tasks\\Todo\\SRC\\Page\\Theme.js",
     components: _components,
     locals: [module],
     imports: [_react.default]
@@ -116054,7 +116389,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       key: "render",
       value: function render() {
         return _react.default.createElement(_ThemeContext.ThemeContext.Provider, {
-          value: this.props.changeReducer.theme,
+          value: this.props.changeReducer,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 11
@@ -116081,7 +116416,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _default2 = (0, _reactRedux.connect)(mapStateToProps)(Theme);
 
   exports.default = _default2;
-},794,[1,561,19,20,27,30,33,47,200,790,565,795],"SRC\\Page\\Theme.js");
+},793,[1,561,19,20,27,30,33,47,200,789,565,794],"SRC\\Page\\Theme.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -116269,7 +116604,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _default2 = (0, _reactNavigation.createAppContainer)(MyNavigator);
 
   exports.default = _default2;
-},795,[1,561,19,20,27,30,33,47,200,2,592,591,796,797],"SRC\\Page\\Loading.js");
+},794,[1,561,19,20,27,30,33,47,200,2,592,591,795,796],"SRC\\Page\\Loading.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = _$$_REQUIRE(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
     "__packager_asset": true,
@@ -116281,7 +116616,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     "name": "back",
     "type": "png"
   });
-},796,[195],"SRC\\assets\\Photo\\back.png");
+},795,[195],"SRC\\assets\\Photo\\back.png");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = _$$_REQUIRE(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
     "__packager_asset": true,
@@ -116293,7 +116628,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     "name": "loading",
     "type": "png"
   });
-},797,[195],"SRC\\assets\\Photo\\loading.png");
+},796,[195],"SRC\\assets\\Photo\\loading.png");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -116304,22 +116639,22 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _redux = _$$_REQUIRE(_dependencyMap[1], "redux");
 
-  var _reducer = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "./ServicesTheme/reducer"));
+  var _reducer = _$$_REQUIRE(_dependencyMap[2], "./ServicesTheme/reducer");
 
   var _reducer2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "./ServicesData/reducer"));
 
   var rootReducer = (0, _redux.combineReducers)({
-    changeReducer: _reducer.default,
+    changeReducer: _reducer.usersReducer,
     userReducer: _reducer2.default
   });
   var _default = rootReducer;
   exports.default = _default;
-},798,[1,562,799,800],"SRC\\Services\\Combiner.js");
+},797,[1,562,798,799],"SRC\\Services\\Combiner.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = void 0;
+  exports.usersReducer = void 0;
 
   var _type = _$$_REQUIRE(_dependencyMap[0], "./type");
 
@@ -116329,24 +116664,23 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     theme: _ThemeContext.themes.light
   };
 
-  function usersReducer() {
+  var usersReducer = function usersReducer() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
     var action = arguments.length > 1 ? arguments[1] : undefined;
 
     switch (action.type) {
       case _type.CHANGE_THEME:
         return {
-          theme: state.theme === _ThemeContext.themes.dark ? _ThemeContext.themes.light : _ThemeContext.themes.dark
+          theme: state.theme.id === _ThemeContext.themes.light.id ? _ThemeContext.themes.dark : _ThemeContext.themes.light
         };
 
       default:
         return state;
     }
-  }
+  };
 
-  var _default = usersReducer;
-  exports.default = _default;
-},799,[792,790],"SRC\\Services\\ServicesTheme\\reducer.js");
+  exports.usersReducer = usersReducer;
+},798,[791,789],"SRC\\Services\\ServicesTheme\\reducer.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -116364,7 +116698,8 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var initialState = {
     id: 0,
     items: [],
-    selectedItem: []
+    selectedItem: [],
+    doneItem: []
   };
 
   function fetchReducer() {
@@ -116455,6 +116790,27 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           selectedItem: filteredData
         });
 
+      case _type.GET_DONE_DATA:
+        var filteredDoneData = action.payload.filter(function (item) {
+          return item.isComplete;
+        });
+        return (0, _objectSpread2.default)({}, state, {
+          loading: false,
+          doneItem: filteredDoneData
+        });
+
+      case _type.CHANGE_STATUS:
+        {
+          var itemIndex = state.items.findIndex(function (p) {
+            return p.id === action.payload;
+          });
+          var item = state.items[itemIndex];
+          return (0, _objectSpread2.default)({}, state, {
+            items: [].concat((0, _toConsumableArray2.default)(state.items.slice(0, itemIndex)), (0, _toConsumableArray2.default)(state.items.slice(itemIndex + 1))),
+            doneItem: [].concat((0, _toConsumableArray2.default)(state.doneItem), [item])
+          });
+        }
+
       default:
         return state;
     }
@@ -116462,7 +116818,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = fetchReducer;
   exports.default = _default;
-},800,[1,15,44,781],"SRC\\Services\\ServicesData\\reducer.js");
+},799,[1,15,44,781],"SRC\\Services\\ServicesData\\reducer.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -116487,13 +116843,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var thunk = createThunkMiddleware();
   thunk.withExtraArgument = createThunkMiddleware;
   exports['default'] = thunk;
-},801,[],"node_modules\\redux-thunk\\lib\\index.js");
+},800,[],"node_modules\\redux-thunk\\lib\\index.js");
 __d(function(global, require, _aUnused, _bUnused, module, exports, _cUnused) {
   module.exports = {
   "name": "tasks",
   "displayName": "tasks"
 };
-},802,[],"app.json");
+},801,[],"app.json");
 __r(84);
 __r(0);
 //# sourceMappingURL=index.map

@@ -1,10 +1,10 @@
-import {REMOVE_ITEM,FETCH_PRODUCTS_BEGIN,SEARCH_ITEM,FETCH_PRODUCTS_SUCCESS,EDITE_ITEM,FETCH_PRODUCTS_FAILURE,FETCH_TYPE,FETCH_ITEM} from './type';
+import {REMOVE_ITEM,GET_DONE_DATA,FETCH_PRODUCTS_BEGIN,SEARCH_ITEM,CHANGE_STATUS,FETCH_PRODUCTS_SUCCESS,EDITE_ITEM,FETCH_PRODUCTS_FAILURE,FETCH_TYPE,FETCH_ITEM} from './type';
 
   const initialState = {
     id: 0,
     items: [],
     selectedItem : [],
-  
+    doneItem:[]
 
   };
 
@@ -25,6 +25,7 @@ import {REMOVE_ITEM,FETCH_PRODUCTS_BEGIN,SEARCH_ITEM,FETCH_PRODUCTS_SUCCESS,EDIT
           loading: false,
           items: action.payload,
           selectedItem: action.payload,
+          
         };
 
         case SEARCH_ITEM:
@@ -58,7 +59,8 @@ import {REMOVE_ITEM,FETCH_PRODUCTS_BEGIN,SEARCH_ITEM,FETCH_PRODUCTS_SUCCESS,EDIT
             selectedItem : [
                 ...state.selectedItem.slice(0,indexSelected),
                 ...state.selectedItem.slice(indexSelected + 1 )
-            ]
+            ],
+            
         };
 
         case EDITE_ITEM : 
@@ -103,6 +105,32 @@ import {REMOVE_ITEM,FETCH_PRODUCTS_BEGIN,SEARCH_ITEM,FETCH_PRODUCTS_SUCCESS,EDIT
             ...state,
             selectedItem : filteredData
         };
+
+        case GET_DONE_DATA:
+        let filteredDoneData = action.payload.filter((item) => (item.isComplete));
+        return {
+            ...state,
+            loading: false,
+            doneItem: filteredDoneData
+        };
+
+
+        case CHANGE_STATUS: {
+            
+          let itemIndex = state.items.findIndex((p => p.id === action.payload));
+          let item = state.items[itemIndex];
+          
+          return {
+              ...state,
+              items: [
+                  ...state.items.slice(0, itemIndex),
+                  //this part used for one array {...item, isComplete: true},
+                  ...state.items.slice(itemIndex + 1),
+              ],
+              doneItem: [...state.doneItem, item]
+          }
+      }
+
 
         default:
         return state;

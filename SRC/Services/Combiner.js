@@ -3,7 +3,7 @@ import {combineReducers} from "redux";
 // import * as usersReducer from "./ServicesTheme/reducer";
 
 
-import usersReducer from './ServicesTheme/reducer'
+import {usersReducer} from './ServicesTheme/reducer'
 import fetchReducer from './ServicesData/reducer'
 const rootReducer = combineReducers({
    changeReducer :  usersReducer,
