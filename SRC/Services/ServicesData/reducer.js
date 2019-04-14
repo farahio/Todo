@@ -117,15 +117,15 @@ import {REMOVE_ITEM,GET_DONE_DATA,FETCH_PRODUCTS_BEGIN,SEARCH_ITEM,CHANGE_STATUS
 
         case CHANGE_STATUS: {
             
-          let itemIndex = state.items.findIndex((p => p.id === action.payload));
-          let item = state.items[itemIndex];
+          let itemIndex = state.selectedItem.findIndex((p => p.id === action.payload));
+          let item = state.selectedItem[itemIndex];
           
           return {
               ...state,
-              items: [
-                  ...state.items.slice(0, itemIndex),
+              selectedItem: [
+                  ...state.selectedItem.slice(0, itemIndex),
                   //this part used for one array {...item, isComplete: true},
-                  ...state.items.slice(itemIndex + 1),
+                  ...state.selectedItem.slice(itemIndex + 1),
               ],
               doneItem: [...state.doneItem, item]
           }

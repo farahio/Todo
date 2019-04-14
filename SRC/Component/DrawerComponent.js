@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   option: {
     width: dim.width,
     height: 60,
-
+    margin: 5,
     flexDirection: "row",
     alignItems: "center"
   },

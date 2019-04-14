@@ -1,21 +1,6 @@
 {
   "tasks": [
     {
-      "option": "Work",
-      "type": "lfjhilsrhukgdf",
-      "date": "04/10/19",
-      "time": "12:28:33",
-      "id": 42
-    },
-    {
-      "option": "Shoping",
-      "type": "neda",
-      "date": "04/10/19",
-      "time": "12:30:55",
-      "id": 44,
-      "isComplete": true
-    },
-    {
       "option": "Shoping",
       "type": "kobra",
       "date": "04/10/19",
@@ -29,15 +14,8 @@
       "date": "04/10/19",
       "time": "12:31:11",
       "iscomplete": true,
-      "id": 46
-    },
-    {
-      "option": "Learning",
-      "type": "mahsa",
-      "date": "04/10/19",
-      "time": "12:31:15",
-      "iscomplete": true,
-      "id": 47
+      "id": 46,
+      "isComplete": true
     },
     {
       "option": "Learning",

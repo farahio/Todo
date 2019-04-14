@@ -11,8 +11,8 @@ import {
   ScrollView,
   TouchableHighlight,
   TouchableOpacity,
-  Easing
-  
+  Easing,
+  PanResponder
 } from "react-native";
 import { createSwitchNavigator, createAppContainer,createStackNavigator,createDrawerNavigator} from "react-navigation";
 import Eat from './Eat'
@@ -43,8 +43,39 @@ let dim=Dimensions.get('window')
     super(props);
     this.state={
       animatedValue:new Animated.Value(100),
-      animatedValue2:new Animated.Value(-100)
-    }}
+      animatedValue2:new Animated.Value(-100),
+     position : new Animated.ValueXY(),
+     
+    }
+
+  }
+  componentWillMount(){
+  this.panResponder = PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder:()=>true,
+      onMoveShouldSetPanResponderCapture:()=>true,
+      onPanResponderGrant:(e, gesture)=>{
+// this.state.position.setOffset({x:this.state.position.x._value , y:this.state.position.y._value})
+// this.state.position.setValue({x:0,y:0})
+      },
+      onPanResponderMove: (event, gesture) => {
+         this.state.position.setValue({ x: gesture.dx, y: gesture.dy });
+         
+      },
+     
+      onPanResponderRelease:(e,gesture)=>{
+
+Animated.timing(this.state.position,{
+  toValue:0,
+  timing:500,
+  useNativeDriver:true
+}).start()
+this.state.position.flattenOffset()
+
+      },
+     
+   });
+  }
 
   componentDidMount () {
    
@@ -76,10 +107,12 @@ let dim=Dimensions.get('window')
     this.props.navigation.navigate('Eat',{ name :'Film To Watch', backgroundColor:'#D573ED'})
 
   }
+  
+
       render() {
         const { navigation } = this.props;
         const name = navigation.getParam('name');
-
+        let handles = this.panResponder.panHandlers;
         // const movingMargin = this.animatedValue.interpolate({
         //   inputRange: [0, 0.5, 1],
         //   outputRange: [-300, 300, 0]
@@ -113,21 +146,23 @@ let dim=Dimensions.get('window')
             <TouchableOpacity 
 
                 onPress={() =>
-                  this.props.navigation.navigate('Eat',{ name :'work', backgroundColor:'#EC400D'})
+                  this.props.navigation.navigate('Eat')
 
                 }
                 style={[styles.Viewoption,{backgroundColor:'#EC400D'}]}>
                 <Text style={styles.textoption}>Work</Text>
             </TouchableOpacity>
             </Animated.View>
-            <Animated.View style={[{transform:[{translateX:this.state.animatedValue2}]}]}>
+            <Animated.View style={{transform:[{translateX:this.state.animatedValue},{translateY:this.state.position.y}]}}{...handles}>
+           
             <TouchableOpacity
                  onPress={this.onPresser.bind(this)}
                 style={[styles.Viewoption,{backgroundColor:'#D573ED'}]}>
+                
                 <Text style={styles.textoption}>Film To Watch</Text>
             </TouchableOpacity>
             </Animated.View>
-            <Animated.View style={{transform:[{translateX:this.state.animatedValue}]}}>
+            <Animated.View style={{transform:[{translateX:this.state.animatedValue},{translateY:this.state.position.y}]}}{...handles}>
             <TouchableOpacity
                  onPress={() => this.props.navigation.navigate('Eat',{ name :'Learning',backgroundColor:'#3C52F6'})}
                 style={[styles.Viewoption,{backgroundColor:'#3C52F6'}]}>
@@ -167,7 +202,9 @@ let dim=Dimensions.get('window')
     const styles=StyleSheet.create({
         countainer:{
             flex:1,
-            backgroundColor:'#B4EBDF'
+            backgroundColor:'#B4EBDF',
+            position:'relative',
+            zIndex: 4,
          
            
     

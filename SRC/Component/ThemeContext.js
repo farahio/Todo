@@ -2,9 +2,9 @@ import React from 'react';
 export const themes = {
     
     light: {
-        backgroundColor: '#42f',
+        backgroundColor: '#ffffff',
         borderColor:'#77849b',
-        fontColor:'red',
+        fontColor:'black',
         borderWidth:1,
         placeholderTextColor:'#dedede',
         burgerMenu:'#fff',
@@ -12,8 +12,8 @@ export const themes = {
         id:"1"
     },
     dark: {
-        backgroundColor: '#2f6',
-        fontColor:'#262626',
+        backgroundColor: '#7A7E7B',
+        fontColor:'white',
         greenFont:'red',
         placeholderTextColor:'#474747',
         burgerMenu:'#282c34',

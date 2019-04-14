@@ -17,7 +17,7 @@ componentDidMount() {
 }
 
 navigate=()=>{
-  setTimeout(()=>this.props.navigation.navigate('Home'),1000)
+  setTimeout(()=>this.props.navigation.navigate('Home'),50)
 };
 animationloading = () => {
   Animated.timing(

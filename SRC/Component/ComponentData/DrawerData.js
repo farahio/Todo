@@ -1,12 +1,6 @@
 
 export const datadrawer =[
-    {
-        image:require('../../assets/Photo/All.png'),
-        title:'ALL',
-        id:0,
-       
-    
-    },
+
 {
     image:require('../../assets/Photo/shoping.png.png'),
     title:'Shoping',
