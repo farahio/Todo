@@ -9,7 +9,9 @@ import {
   FlatList,
   Image,
   TouchableOpacity,
-  TouchableHighlight
+  TouchableHighlight,
+  PanResponder,
+  Animated
 } from "react-native";
 import {
   createStackNavigator,
@@ -21,7 +23,7 @@ import DrawerComponent from "../Component/DrawerComponent";
 import Header from './Header'
 import { connect } from "react-redux";
 import { fetchProducts, setItem,getDone,setRemoveItem,editItem,setSearchItem,setType} from "../Services/ServicesData/action";
-
+import Item from '../Component/Element'
 
 let dim = Dimensions.get("window");
 
@@ -34,16 +36,32 @@ class Eat extends Component {
 }
 
 
-
-
   constructor(props) {
     super(props);
+    this.setScrollEnabled = this.setScrollEnabled.bind(this);
+    const position = new Animated.ValueXY();
+        const panResponder = PanResponder.create({
+          onStartShouldSetPanResponder: (evt, gestureState) => true,
+          onStartShouldSetPanResponderCapture: (evt, gestureState) => true,
+          onMoveShouldSetPanResponder: (evt, gestureState) => true,
+          onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
+           onPanResponderMove: (event, gestureState) => {
+              position.setValue({ x: gestureState.dx, y: gestureState.dy });
+           },
+           onPanResponderRelease: (evt, gestureState) => {
+            position.setValue({ x: gestureState.dx, y: gestureState.dy });
+          },
+      });
+        
     this.state = {
+      position,
+      panResponder,
       text: "",
       select: false,
       selectItem:0,
       item:null,
-      edit:false
+      edit:false,
+      enable: true,
     };
   }
 
@@ -67,15 +85,6 @@ class Eat extends Component {
     })
   }
 
-  setTextEdit(input,item) {
-    this.setState({ 
-      edit : true,
-      item:item,
-      text: input ,
-      color:'red'
-    });
-
-  }
 
   setText(input) {
     
@@ -107,58 +116,36 @@ const inBackgroundcolor = navigation.getParam("backgroundColor", "gold")
 
   }
 
-  
-completeTask = (id) => {
-  this.props.getDone(id)
 
-};
+setScrollEnabled(enable) {
+  this.setState({
+    enable,
+  });
+}
 
+renderItem(item) {
+  return (
+    <Item
+      item={item}
+      navigation = {this.props.navigation}
+      setScrollEnabled={enable => this.setScrollEnabled(enable)}
+    />
+  );
+}
   render() {
     const { navigation} = this.props
     const name = navigation.getParam("name","UNDEFINED")
-
     return (
       <View style={styles.container}>
   
         <View style={styles.bodyStyle}>
           <View style={styles.Listener}>
           <FlatList
-                            data={this.props.selectedItem}
-                            keyExtractor={item => item.id.toString()}
-                           
-                            renderItem={({item,})=>
-        
-                            <View style={styles.boxGreen}>
-                                <View style={styles.boxText}>
-                                
-                                    <Text style={styles.textOption}>{item.option}</Text>
-                                   
-                          
-                                    <Text style={styles.text}>{item.type}</Text>
-                                    <View style={styles.date}>
-                                    <Text style={styles.textDate}>{item.date}</Text>
-                                    <Text style={styles.textTime}>{item.time}</Text>
-                                    
-                                
-                                <View style={styles.button}>
-                                <TouchableOpacity onPress={() => this.props.setRemoveItem(item.id)}
-                                style={styles.delete}>
-                                        <Icon name="trash" color="white" size={20}/>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity  style={styles.delete} onPress={ this.setTextEdit.bind(this,item.type , item)}>
-                                    <Icon name="edit" color="white" size={20}/>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity  onPress={this.completeTask.bind(this, item.id)}
-                                style={styles.delete}>
-                                        <Icon name="check" color='white' size={20}/> 
-                                    </TouchableOpacity>
-                                    </View>
-                                    </View>
-                                    </View>
-                            </View>
-
-                        }
-                        />
+              data={this.props.selectedItem}
+              keyExtractor={item => item.id.toString()}
+              
+              renderItem={({item}) => this.renderItem(item)}
+          />
              
           </View>
           <View style={styles.Changer}>
@@ -235,11 +222,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     
   },
-  textOption2: {
-    color: "white",
-   
-    fontSize: 22
-  },
+
   inputStyle: {
     flex:8,
     backgroundColor:'white',
@@ -331,65 +314,7 @@ const styles = StyleSheet.create({
        position:'relative',
        paddingRight:20,
    },
-   text:{
-       color:'white',
-       fontWeight:'bold',
-       fontSize:18,
-       paddingVertical:5,
-       alignSelf:'flex-end',
-   },
-   textOption:{
-       color:'white',
-       fontWeight:'bold',
-       fontSize:22,
-       paddingVertical:5,
-       
-   },
-   button:{
-       flexDirection:'row',
-      marginLeft:30
-   },
 
-   boxGreen:{
-       flexDirection:'row',
-       borderColor:'#123738',
-       borderWidth:1,
-       backgroundColor:'#174849',
-       flex:5,
-       paddingVertical:5,
-       justifyContent:'space-between',
-       marginTop:10,
-       
-       paddingHorizontal: 10,
-       elevation:10,
-       borderRadius:5
-   },
-   boxText:{
-       width:200,
-       
-     
-   },
-   delete:{
-       width:35,
-       height:35,
-       backgroundColor:'pink',
-       justifyContent:'center',
-       alignItems:'center',
-       margin:5,
-       borderRadius:7
-   },
-   textDelete:{
-       color:'red',
-       fontWeight:'500'
-   },
-   textEdite:{
-       color:'#348C16',
-       fontWeight:'500'
-   },
-   date:{
-       flexDirection:'row',
-       
-   },
    textDate:{
        margin:10,
        color:'white'
@@ -414,5 +339,3 @@ const mapStateToProps = state => {
   };
 };
 export default connect(mapStateToProps,{fetchProducts,setItem,setType,setSearchItem,setRemoveItem,getDone,editItem})(Eat);
-
- 

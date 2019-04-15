@@ -1,45 +1,13 @@
 {
   "tasks": [
     {
-      "option": "Shoping",
-      "type": "kobra",
-      "date": "04/10/19",
-      "time": "12:30:59",
-      "iscomplete": true,
-      "id": 45
-    },
-    {
-      "option": "Learning",
-      "type": "akram",
-      "date": "04/10/19",
-      "time": "12:31:11",
-      "iscomplete": true,
-      "id": 46,
-      "isComplete": true
-    },
-    {
-      "option": "Learning",
-      "type": "karim",
-      "date": "04/10/19",
-      "time": "12:31:20",
-      "iscomplete": true,
-      "id": 48
-    },
-    {
-      "option": "Film To Watch",
-      "type": "lili",
-      "date": "04/10/19",
-      "time": "12:31:28",
-      "iscomplete": true,
-      "id": 49
-    },
-    {
       "option": "Film To Watch",
       "type": "koko",
       "date": "04/10/19",
       "time": "12:31:31",
       "iscomplete": true,
-      "id": 50
+      "id": 50,
+      "isComplete": true
     },
     {
       "option": "Film To Watch",
@@ -47,7 +15,8 @@
       "date": "04/10/19",
       "time": "12:31:35",
       "iscomplete": true,
-      "id": 51
+      "id": 51,
+      "isComplete": true
     },
     {
       "option": "Film To Watch",

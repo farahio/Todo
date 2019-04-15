@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor:'#F1F5E0',
     justifyContent:'center',
+    alignItems:'center'
     
   },
   drawerBotton: {
@@ -233,7 +234,7 @@ const styles = StyleSheet.create({
        borderColor:'#123738',
        borderWidth:1,
        backgroundColor:'#174849',
-       flex:5,
+       width:350,
        paddingVertical:5,
        justifyContent:'space-between',
        marginTop:10,
